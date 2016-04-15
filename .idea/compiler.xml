@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="cmpe-281" />
+        <module name="marine-meterology-18" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cmpe-281" target="1.6" />
+      <module name="marine-meterology-18" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
