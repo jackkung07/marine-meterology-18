@@ -58,7 +58,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Home</a></li>
 				<li><a href="#">Settings</a></li>
-				<li><a href="#">Login</a></li>
+				<li><a href="login">Login</a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">

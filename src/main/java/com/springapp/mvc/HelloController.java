@@ -24,4 +24,9 @@ public class HelloController {
 		//model.addAttribute("message", "Hello world!");
 		return "monitor";
 	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(ModelMap model) {
+        return "login";
+    }
 }
