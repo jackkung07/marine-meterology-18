@@ -141,7 +141,7 @@
             <h1 class="page-header">Sensor Data Request</h1>
             <div class="row placeholders">
                 <div id="sensorDataRequest">
-                    <form method="get" action="#">
+                    <form method="get" action="sensormgn">
                         <table class="table table-striped">
                             <tr>
                                 <td align="right">Sensor ID</td>
