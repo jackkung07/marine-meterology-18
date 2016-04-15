@@ -34,4 +34,9 @@ public class HelloController {
     public String search(ModelMap model) {
         return "search";
     }
+
+    @RequestMapping(value = "/sensorMaintenance", method = RequestMethod.GET)
+    public String sensorMaintenance(ModelMap model) {
+        return "sensorMaintenance";
+    }
 }
