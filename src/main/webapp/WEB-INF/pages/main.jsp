@@ -75,7 +75,7 @@
 				<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
 				<li><a href="search">search</a></li>
 				<li><a href="monitor">Status</a></li>
-				<li><a href="#">Analytics</a></li>
+				<li><a href="sensorMgn">Management</a></li>
 				<li><a href="#">Export</a></li>
 			</ul>
 			<!-- <ul class="nav nav-sidebar">
