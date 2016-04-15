@@ -29,4 +29,9 @@ public class HelloController {
     public String login(ModelMap model) {
         return "login";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(ModelMap model) {
+        return "search";
+    }
 }
