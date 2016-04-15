@@ -18,4 +18,10 @@ public class HelloController {
 		//model.addAttribute("message", "Hello world!");
 		return "sensorMgn";
 	}
+
+	@RequestMapping(value = "/monitor", method = RequestMethod.GET)
+	public String sensorMonitor(ModelMap model) {
+		//model.addAttribute("message", "Hello world!");
+		return "monitor";
+	}
 }
