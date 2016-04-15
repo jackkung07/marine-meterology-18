@@ -56,9 +56,9 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#">Settings</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="login">Login</a></li>
         <li><a href="#">Help</a></li>
       </ul>
       <form class="navbar-form navbar-right">
@@ -72,8 +72,9 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li><a href="#">Home</a></li>
+        <li><a href="/">Home</a></li>
         <!--li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li-->
+        <li><a href="search">Search</a></li>
         <li class="active"><a href="#">Status <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Analytics</a></li>
         <li><a href="#">Export</a></li>
