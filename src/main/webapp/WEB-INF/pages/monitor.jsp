@@ -98,15 +98,36 @@
       <div class="row placeholders">
         <div id="map"></div>
         <script>
+          var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          var labelIndex = 0;
+          var myLocation = [{lat: 45.0, lng: 165.0},
+            {lat: 45.0, lng: 165.0125},
+            {lat: 45.0, lng: 165.025},
+            {lat: 45.0, lng: 165.0375},
+            {lat: 45.0, lng: 165.05}]
           function initMap() {
             var mapDiv = document.getElementById('map');
             var map = new google.maps.Map(mapDiv, {
-              center: {lat: 44.540, lng: -78.546},
-              zoom: 8
+              zoom: 13,
+              center: myLocation[0]
+            });
+            for(i = 0; i < myLocation.length; i++) {
+              addMarker(myLocation[i], map);
+            }
+          }
+          // add marker
+          function addMarker(location, map) {
+            // Add the marker at the clicked location, and add the next-available label
+            // from the array of alphabetical characters.
+            var marker = new google.maps.Marker({
+              position: location,
+              label: labels[labelIndex++ % labels.length],
+              map: map
             });
           }
+
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChcIlGDaQ7WxkjDz9_CsFN9emDUd6Hj0s&callback=initMap"
                 async defer></script>
         <!-- <div class="col-xs-6 col-sm-3 placeholder">
           <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
