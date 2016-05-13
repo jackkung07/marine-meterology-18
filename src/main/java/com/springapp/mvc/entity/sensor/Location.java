@@ -1,4 +1,4 @@
-package com.springapp.mvc.sensor.entity;
+package com.springapp.mvc.entity.sensor;
 
 /**
  * Created by ivanybma on 5/13/16.

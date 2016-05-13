@@ -1,4 +1,4 @@
-package com.springapp.mvc.sensor.Service;
+package com.springapp.mvc.service.sensor;
 
 import com.springapp.mvc.sensor.SensorControl.SensorContact;
 import org.springframework.web.client.RestTemplate;

@@ -1,7 +1,7 @@
 package com.springapp.mvc.sensor.SensorControl;
 
 
-import com.springapp.mvc.sensor.entity.Location;
+import com.springapp.mvc.entity.sensor.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,13 +20,13 @@ public class SensorContact {
     static public final String lfttime = "&time>=", rhttime = "&time<=";
 
 
-    static enum sensorlocation{
+    static public enum sensorlocation{
         edu_ucdavis_bml_bodega, cencoos_carquinez, edu_ucdavis_bml_fortpoint,
         edu_humboldt_hbc, cencoos_humboldt, cencoos_monterey, edu_calpoly_marine_morro,
         cencoos_trinidad, cencoos_tiburon
     }
 
-    static enum sensortype{
+    static public enum sensortype{
         sea_water_pressure, sea_water_temperature, sea_water_practical_salinity,
         mass_concentration_of_oxygen_in_sea_water, sea_water_ph_reported_on_total_scale, turbidity
     }
