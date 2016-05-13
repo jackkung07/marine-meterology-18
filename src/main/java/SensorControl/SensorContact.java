@@ -1,6 +1,6 @@
 package SensorControl;
 
-import entity.Location;
+import entity.sensor.Location;
 
 import java.util.HashMap;
 import java.util.Map;
