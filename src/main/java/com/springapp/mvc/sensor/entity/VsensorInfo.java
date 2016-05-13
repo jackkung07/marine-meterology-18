@@ -1,4 +1,4 @@
-package entity.sensor;
+package com.springapp.mvc.sensor.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;

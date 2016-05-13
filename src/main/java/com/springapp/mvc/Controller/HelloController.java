@@ -1,6 +1,8 @@
-package com.springapp.mvc;
+package com.springapp.mvc.Controller;
 
-import SensorControl.SensorContact;
+
+import com.springapp.mvc.sensor.SensorControl.SensorContact;
+import com.springapp.mvc.sensor.Service.RtvSensorD;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -49,23 +51,7 @@ public class HelloController {
 	@ResponseBody
 	public String rtvSensorD(@PathVariable("type") String type, @PathVariable("location") String location,
 							 @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
-
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateobj = new Date();
-		String curdate = df.format(dateobj);
-		System.out.println(curdate);
-
-		if(strdate.equals("_"))	strdate=curdate;
-		if(enddate.equals("_"))	enddate=curdate;
-
-		String url = SensorContact.buildurl(type, location, strdate, enddate);
-		RestTemplate restTemplate;
-		restTemplate = new RestTemplate();
-		System.out.println(url);
-		String output = restTemplate.getForObject(url, String.class);
-
-		return output;
-
+		return RtvSensorD.rtvData(type,location,strdate, enddate);
 	}
 
 
