@@ -1,9 +1,14 @@
 package com.springapp.mvc;
 
+import SensorControl.SensorContact;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class HelloController {
@@ -13,7 +18,7 @@ public class HelloController {
 		return "main";
 	}
 
-	@RequestMapping(value = "/sensormgn", method = RequestMethod.GET)
+	@RequestMapping(value = "/sensorMgn", method = RequestMethod.GET)
 	public String sensorMan(ModelMap model) {
 		//model.addAttribute("message", "Hello world!");
 		return "sensorMgn";
@@ -26,17 +31,42 @@ public class HelloController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(ModelMap model) {
-        return "login";
-    }
+	public String login(ModelMap model) {
+		return "login";
+	}
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(ModelMap model) {
-        return "search";
-    }
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(ModelMap model) {
+		return "search";
+	}
 
-    @RequestMapping(value = "/sensorMaintenance", method = RequestMethod.GET)
-    public String sensorMaintenance(ModelMap model) {
-        return "sensorMaintenance";
-    }
+	@RequestMapping(value = "/sensorMaintenance", method = RequestMethod.GET)
+	public String sensorMaintenance(ModelMap model) {
+		return "sensorMaintenance";
+	}
+
+	@RequestMapping(value = "/rtvsensord/{type}/{location}/{strdate}/{enddate}", method = RequestMethod.GET)
+	@ResponseBody
+	public String rtvSensorD(@PathVariable("type") String type, @PathVariable("location") String location,
+							 @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
+
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateobj = new Date();
+		String curdate = df.format(dateobj);
+		System.out.println(curdate);
+
+		if(strdate.equals("_"))	strdate=curdate;
+		if(enddate.equals("_"))	enddate=curdate;
+
+		String url = SensorContact.buildurl(type, location, strdate, enddate);
+		RestTemplate restTemplate;
+		restTemplate = new RestTemplate();
+		System.out.println(url);
+		String output = restTemplate.getForObject(url, String.class);
+
+		return output;
+
+	}
+
+
 }
