@@ -1,4 +1,4 @@
-package entity;
+package entity.sensor;
 
 /**
  * Created by ivanybma on 5/13/16.
