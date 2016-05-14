@@ -3,17 +3,19 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-       xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/data/mongo
-        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd">
 
-    <context:component-scan base-package="com.springapp.mvc"/>
+    <context:component-scan base-package="com.springapp.mvc.controller"/>
     <mvc:annotation-driven />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -31,8 +33,14 @@
     <mongo:repositories base-package="com.springapp.mvc.sensorRepo"></mongo:repositories>
     <context:component-scan base-package="com.springapp.mvc.sensorService"/>
 
-    <task:annotation-driven/>
+
+
     <context:component-scan base-package="com.springapp.mvc.sensorControl"/>
-    <bean id="SchedulerTask" class="com.springapp.mvc.sensorControl.SensorMonitor" />
+
+    <task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
+    <task:executor id="myExecutor" pool-size="5"/>
+    <task:scheduler id="myScheduler" pool-size="10"/>
+    <bean id="SensorMonitor" class="com.springapp.mvc.sensorControl.SensorMonitor" />
+    <bean id="TrbSensorD" class="com.springapp.mvc.sensorService.RtvSensorD" />
 
 </beans>

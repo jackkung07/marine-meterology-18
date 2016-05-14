@@ -9,11 +9,14 @@ public class Sensor {
 
     private SensorType sensorType;
 
+    private SensorLocation sensorLocation;
+
     public Sensor() {
     }
 
-    public Sensor(SensorType sensorType) {
+    public Sensor(SensorType sensorType, SensorLocation sensorLocation) {
         this.sensorType = sensorType;
+        this.sensorLocation = sensorLocation;
         this.sensorStatus = SensorStatus.UNKNOWN;
     }
 
@@ -31,5 +34,18 @@ public class Sensor {
 
     public void setSensorType(SensorType sensorType) {
         this.sensorType = sensorType;
+    }
+
+    public SensorLocation getSensorLocation() {
+        return sensorLocation;
+    }
+
+    public void setSensorLocation(SensorLocation sensorLocation) {
+        this.sensorLocation = sensorLocation;
+    }
+
+    @Override
+    public String toString(){
+        return "Sensor Type: " + sensorType.toString() + " Sensor Location: " + sensorLocation.toString() + " Sensor Status: " + sensorStatus.toString();
     }
 }

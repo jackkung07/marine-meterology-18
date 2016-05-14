@@ -99,7 +99,7 @@ public class SensorContact {
         String url1 = sensorbase + Slocation + filetype + fixvalue + Stype;
         String url2 = lfttime + Strdate + starttime + rhttime + Enddate + endtime;
 
-        System.out.println(url1+url2);
+//        System.out.println(url1+url2);
         return url1+url2;
     }
 
