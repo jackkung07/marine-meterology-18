@@ -43,153 +43,171 @@
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Sensor Cloud</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">Home</a></li>
-        <li><a href="#">Sensor Settings</a></li>
-        <li><a href="login">Login</a></li>
-        <li><a href="#">Help</a></li>
-      </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
-    </div>
-  </div>
-</nav>
+<c:forEach var="sensor" items="${sensorList}">
+  <td>${sensor.sensorLocation}</td>
+  <td>${sensor.sensorType}</td>
+  <td>${sensor.sensorStatus}</td>
+</c:forEach>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li><a href="/">Home</a></li>
-        <!--li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li-->
-        <li><a href="search">Search</a></li>
-        <li class="active"><a href="#">Status <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Analytics</a></li>
-        <li><a href="#">Export</a></li>
-      </ul>
-      <!-- <ul class="nav nav-sidebar">
-        <li><a href="">Nav item</a></li>
-        <li><a href="">Nav item again</a></li>
-        <li><a href="">One more nav</a></li>
-        <li><a href="">Another nav item</a></li>
-        <li><a href="">More navigation</a></li>
-      </ul> -->
-      <!-- <ul class="nav nav-sidebar">
-        <li><a href="">Nav item again</a></li>
-        <li><a href="">One more nav</a></li>
-        <li><a href="">Another nav item</a></li>
-      </ul> -->
-    </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h1 class="page-header">Dashboard</h1>
+<%--<nav class="navbar navbar-inverse navbar-fixed-top">--%>
+  <%--<div class="container-fluid">--%>
+    <%--<div class="navbar-header">--%>
+      <%--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">--%>
+        <%--<span class="sr-only">Toggle navigation</span>--%>
+        <%--<span class="icon-bar"></span>--%>
+        <%--<span class="icon-bar"></span>--%>
+        <%--<span class="icon-bar"></span>--%>
+      <%--</button>--%>
+      <%--<a class="navbar-brand" href="#">Sensor Cloud</a>--%>
+    <%--</div>--%>
+    <%--<div id="navbar" class="navbar-collapse collapse">--%>
+      <%--<ul class="nav navbar-nav navbar-right">--%>
+        <%--<li><a href="/">Home</a></li>--%>
+        <%--<li><a href="#">Sensor Settings</a></li>--%>
+        <%--<li><a href="login">Login</a></li>--%>
+        <%--<li><a href="#">Help</a></li>--%>
+      <%--</ul>--%>
+      <%--<form class="navbar-form navbar-right">--%>
+        <%--<input type="text" class="form-control" placeholder="Search...">--%>
+      <%--</form>--%>
+    <%--</div>--%>
+  <%--</div>--%>
+<%--</nav>--%>
 
-      <div class="row placeholders">
-        <div id="map"></div>
-        <script>
-          var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-          var labelIndex = 0;
-          var myLocation = [{lat: 45.0, lng: 165.0},
-            {lat: 45.0, lng: 165.0125},
-            {lat: 45.0, lng: 165.025},
-            {lat: 45.0, lng: 165.0375},
-            {lat: 45.0, lng: 165.05}]
-          function initMap() {
-            var mapDiv = document.getElementById('map');
-            var map = new google.maps.Map(mapDiv, {
-              zoom: 13,
-              center: myLocation[0]
-            });
-            for(i = 0; i < myLocation.length; i++) {
-              addMarker(myLocation[i], map);
-            }
-          }
-          // add marker
-          function addMarker(location, map) {
-            // Add the marker at the clicked location, and add the next-available label
-            // from the array of alphabetical characters.
-            var marker = new google.maps.Marker({
-              position: location,
-              label: labels[labelIndex++ % labels.length],
-              map: map
-            });
-          }
+<%--<div class="container-fluid">--%>
+  <%--<div class="row">--%>
+    <%--<div class="col-sm-3 col-md-2 sidebar">--%>
+      <%--<ul class="nav nav-sidebar">--%>
+        <%--<li><a href="/">Home</a></li>--%>
+        <%--<!--li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li-->--%>
+        <%--<li><a href="search">Search</a></li>--%>
+        <%--<li class="active"><a href="#">Status <span class="sr-only">(current)</span></a></li>--%>
+        <%--<li><a href="#">Analytics</a></li>--%>
+        <%--<li><a href="#">Export</a></li>--%>
+      <%--</ul>--%>
+      <%--<!-- <ul class="nav nav-sidebar">--%>
+        <%--<li><a href="">Nav item</a></li>--%>
+        <%--<li><a href="">Nav item again</a></li>--%>
+        <%--<li><a href="">One more nav</a></li>--%>
+        <%--<li><a href="">Another nav item</a></li>--%>
+        <%--<li><a href="">More navigation</a></li>--%>
+      <%--</ul> -->--%>
+      <%--<!-- <ul class="nav nav-sidebar">--%>
+        <%--<li><a href="">Nav item again</a></li>--%>
+        <%--<li><a href="">One more nav</a></li>--%>
+        <%--<li><a href="">Another nav item</a></li>--%>
+      <%--</ul> -->--%>
+    <%--</div>--%>
+    <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">--%>
+      <%--<h1 class="page-header">Dashboard</h1>--%>
 
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChcIlGDaQ7WxkjDz9_CsFN9emDUd6Hj0s&callback=initMap"
-                async defer></script>
-        <!-- <div class="col-xs-6 col-sm-3 placeholder">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-          <h4>Map</h4>
-          <span class="text-muted">Something else</span>
-        </div> -->
-      </div>
+      <%--<div class="row placeholders">--%>
+        <%--<div id="map"></div>--%>
+        <%--<script>--%>
+          <%--var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';--%>
+          <%--var labelIndex = 0;--%>
+          <%--var myLocation = [{lat: 45.0, lng: 165.0},--%>
+            <%--{lat: 45.0, lng: 165.0125},--%>
+            <%--{lat: 45.0, lng: 165.025},--%>
+            <%--{lat: 45.0, lng: 165.0375},--%>
+            <%--{lat: 45.0, lng: 165.05}]--%>
+          <%--function initMap() {--%>
+            <%--var mapDiv = document.getElementById('map');--%>
+            <%--var map = new google.maps.Map(mapDiv, {--%>
+              <%--zoom: 13,--%>
+              <%--center: myLocation[0]--%>
+            <%--});--%>
+            <%--for(i = 0; i < myLocation.length; i++) {--%>
+              <%--addMarker(myLocation[i], map);--%>
+            <%--}--%>
+          <%--}--%>
+          <%--// add marker--%>
+          <%--function addMarker(location, map) {--%>
+            <%--// Add the marker at the clicked location, and add the next-available label--%>
+            <%--// from the array of alphabetical characters.--%>
+            <%--var marker = new google.maps.Marker({--%>
+              <%--position: location,--%>
+              <%--label: labels[labelIndex++ % labels.length],--%>
+              <%--map: map--%>
+            <%--});--%>
+          <%--}--%>
 
-      <h2 class="sub-header">Sensor Status</h2>
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Sensor Name</th>
-            <th>Sensor Type</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Status</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>POES AVHRR</td>
-            <td>Temperature</td>
-            <td>45.0</td>
-            <td>165.0</td>
-            <td>off</td>
-          </tr>
-          <tr>
-            <td>POES AVHRR</td>
-            <td>Temperature</td>
-            <td>45.0</td>
-            <td>165.0125</td>
-            <td>on</td>
-          </tr>
-          <tr>
-            <td>POES AVHRR</td>
-            <td>Temperature</td>
-            <td>45.0</td>
-            <td>165.025</td>
-            <td>off</td>
-          </tr>
-          <tr>
-            <td>POES AVHRR</td>
-            <td>Temperature</td>
-            <td>45.0</td>
-            <td>165.0375</td>
-            <td>off</td>
-          </tr>
-          <tr>
-            <td>POES AVHRR</td>
-            <td>Temperature</td>
-            <td>45.0</td>
-            <td>165.05</td>
-            <td>on</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+        <%--</script>--%>
+        <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChcIlGDaQ7WxkjDz9_CsFN9emDUd6Hj0s&callback=initMap"--%>
+                <%--async defer></script>--%>
+        <%--<!-- <div class="col-xs-6 col-sm-3 placeholder">--%>
+          <%--<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">--%>
+          <%--<h4>Map</h4>--%>
+          <%--<span class="text-muted">Something else</span>--%>
+        <%--</div> -->--%>
+      <%--</div>--%>
+
+
+      <%--<h2 class="sub-header">Sensor Status</h2>--%>
+      <%--<div class="table-responsive">--%>
+        <%--<table class="table table-striped">--%>
+          <%--<thead>--%>
+          <%--<tr>--%>
+            <%--<th>Sensor Name</th>--%>
+            <%--<th>Sensor Type</th>--%>
+            <%--<th>Latitude</th>--%>
+            <%--<th>Longitude</th>--%>
+            <%--<th>Status</th>--%>
+          <%--</tr>--%>
+          <%--</thead>--%>
+          <%--<c:forEach var="sensor" items="${sensorList}">--%>
+          <%--<tbody>--%>
+          <%--<tr>--%>
+            <%--<td>${sensor.sensorLocation}</td>--%>
+            <%--<td>${sensor.sensorType}</td>--%>
+            <%--<td>45.0</td>--%>
+            <%--<td>165.0</td>--%>
+            <%--<td>${sensor.sensorStatus}</td>--%>
+          <%--</tr>--%>
+          <%--</tbody>--%>
+          <%--</c:forEach>--%>
+          <%--</table>--%>
+        <%--</div>--%>
+
+      <%--</div>--%>
+    <%--</div>--%>
+  <%--</div>--%>
+
+
+          <%--<tr>--%>
+            <%--<td>POES AVHRR</td>--%>
+            <%--<td>Temperature</td>--%>
+            <%--<td>45.0</td>--%>
+            <%--<td>165.0125</td>--%>
+            <%--<td>on</td>--%>
+          <%--</tr>--%>
+          <%--<tr>--%>
+            <%--<td>POES AVHRR</td>--%>
+            <%--<td>Temperature</td>--%>
+            <%--<td>45.0</td>--%>
+            <%--<td>165.025</td>--%>
+            <%--<td>off</td>--%>
+          <%--</tr>--%>
+          <%--<tr>--%>
+            <%--<td>POES AVHRR</td>--%>
+            <%--<td>Temperature</td>--%>
+            <%--<td>45.0</td>--%>
+            <%--<td>165.0375</td>--%>
+            <%--<td>off</td>--%>
+          <%--</tr>--%>
+          <%--<tr>--%>
+            <%--<td>POES AVHRR</td>--%>
+            <%--<td>Temperature</td>--%>
+            <%--<td>45.0</td>--%>
+            <%--<td>165.05</td>--%>
+            <%--<td>on</td>--%>
+          <%--</tr>--%>
+          <%--</tbody>--%>
+        <%--</table>--%>
+      <%--</div>--%>
+    <%--</div>--%>
+  <%--</div>--%>
+<%--</div>--%>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

@@ -24,12 +24,12 @@ public class SensorMonitor {
     @Autowired
     RtvSensorD rtvSensorD;
 
-    private static List<Sensor> seaWaterPressureList = new ArrayList<Sensor>();
-    private static List<Sensor> seaWaterTemperatureList = new ArrayList<Sensor>();
-    private static List<Sensor> seaWaterPracticalSalinityList = new ArrayList<Sensor>();
-    private static List<Sensor> massConcOxygenList = new ArrayList<Sensor>();
-    private static List<Sensor> seaWaterPhList = new ArrayList<Sensor>();
-    private static List<Sensor> turbidityList = new ArrayList<Sensor>();
+    private List<Sensor> seaWaterPressureList = new ArrayList<Sensor>();
+    private List<Sensor> seaWaterTemperatureList = new ArrayList<Sensor>();
+    private List<Sensor> seaWaterPracticalSalinityList = new ArrayList<Sensor>();
+    private List<Sensor> massConcOxygenList = new ArrayList<Sensor>();
+    private List<Sensor> seaWaterPhList = new ArrayList<Sensor>();
+    private List<Sensor> turbidityList = new ArrayList<Sensor>();
 
     public SensorMonitor() {
         for (Map.Entry<String, List<String>> entry : SensorContact.sensortypemap.entrySet()) {
@@ -65,6 +65,13 @@ public class SensorMonitor {
 //        System.out.println("mass oxygen total sensors: " + massConcOxygenList.size());
 //        System.out.println("sea water ph total sensors: " + seaWaterPhList.size());
 //        System.out.println("turbidity total sensors: " + turbidityList.size());
+    }
+
+    public List<Sensor> getAllSensors() {
+        List<Sensor> sensorList = new ArrayList<Sensor>();
+        sensorList.addAll(seaWaterPressureList);
+
+        return sensorList;
     }
 
     @Scheduled(fixedRate = 5000)

@@ -1,8 +1,6 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.sensorControl.SensorContact;
-import com.springapp.mvc.sensorControl.SensorLocation;
-import com.springapp.mvc.sensorControl.SensorType;
+import com.springapp.mvc.sensorControl.*;
 import com.springapp.mvc.sensorEntity.Location;
 import com.springapp.mvc.sensorEntity.PsensorInfo;
 import com.springapp.mvc.sensorEntity.VsensorInfo;
@@ -14,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -31,6 +27,9 @@ public class HelloController {
     @Autowired
     RtvSensorD rtvSensorD;
 
+    @Autowired
+    SensorMonitor sensorMonitor;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainPage(ModelMap model) {
         //model.addAttribute("message", "Hello world!");
@@ -44,8 +43,17 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/monitor", method = RequestMethod.GET)
-    public String sensorMonitor(ModelMap model) {
-        //model.addAttribute("message", "Hello world!");
+    public String monitor(ModelMap model) {
+        List<Object> sensorList = new ArrayList<Object>();
+        for(int i = 0; i < sensorMonitor.getAllSensors().size(); i++){
+            Sensor sensor = sensorMonitor.getAllSensors().get(i);
+            Map<String, Object> sensorMap= new HashMap<String, Object>();
+            sensorMap.put("sensorLocation", sensor.getSensorLocation().toString());
+            sensorMap.put("sensorType", sensor.getSensorType().toString());
+            sensorMap.put("sensorStatus", sensor.getSensorStatus());
+            sensorList.add((HashMap)sensorMap);
+        }
+        model.addAttribute("sensorList", sensorList);
         return "monitor";
     }
 
