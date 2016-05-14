@@ -43,4 +43,9 @@ public class SensorServicesImp implements SensorServices{
     public void createVsensor(VsensorInfo vsensorInfo) {
         sensorRepo.save(vsensorInfo);
     }
+
+    @Override
+    public void clearSensorInfo() {
+        sensorRepo.deleteAll();
+    }
 }

@@ -13,4 +13,5 @@ public interface SensorServices {
     public void createVsensor(VsensorInfo vsensorInfo);
     public void chgVsensorStatus(String vsensorId, String newstatus);
     public void chgPsensorStatus(String vsensorId, String psensorId, String newstatus);
+    public void clearSensorInfo();
 }
