@@ -1,6 +1,6 @@
-package com.springapp.mvc.service.sensor;
+package com.springapp.mvc.sensorService;
 
-import com.springapp.mvc.sensor.SensorControl.SensorContact;
+import com.springapp.mvc.sensorControl.SensorContact;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.DateFormat;

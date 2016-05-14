@@ -1,7 +1,7 @@
-package com.springapp.mvc.sensor.SensorControl;
+package com.springapp.mvc.sensorControl;
 
 
-import com.springapp.mvc.entity.sensor.Location;
+import com.springapp.mvc.sensorEntity.Location;
 
 import java.util.HashMap;
 import java.util.Map;

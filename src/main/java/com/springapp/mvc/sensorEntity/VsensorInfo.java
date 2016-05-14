@@ -1,6 +1,5 @@
-package com.springapp.mvc.entity.sensor;
+package com.springapp.mvc.sensorEntity;
 
-import com.springapp.mvc.entity.sensor.PsensorInfo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;

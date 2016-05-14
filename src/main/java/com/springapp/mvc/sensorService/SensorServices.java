@@ -1,6 +1,7 @@
-package com.springapp.mvc.service.sensor;
+package com.springapp.mvc.sensorService;
 
-import com.springapp.mvc.entity.sensor.VsensorInfo;
+
+import com.springapp.mvc.sensorEntity.VsensorInfo;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package com.springapp.mvc.service.sensor;
+package com.springapp.mvc.sensorService;
 
-import com.springapp.mvc.entity.sensor.VsensorInfo;
-import com.springapp.mvc.repository.sensor.SensorRepo;
+import com.springapp.mvc.sensorEntity.VsensorInfo;
+import com.springapp.mvc.sensorRepo.SensorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

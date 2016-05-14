@@ -1,6 +1,4 @@
-package com.springapp.mvc.entity.sensor;
-
-import com.springapp.mvc.entity.sensor.Location;
+package com.springapp.mvc.sensorEntity;
 
 /**
  * Created by ivanybma on 5/13/16.

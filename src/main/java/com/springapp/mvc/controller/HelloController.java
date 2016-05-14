@@ -1,12 +1,11 @@
-package com.springapp.mvc.Controller;
+package com.springapp.mvc.controller;
 
-
-import com.springapp.mvc.entity.sensor.Location;
-import com.springapp.mvc.entity.sensor.PsensorInfo;
-import com.springapp.mvc.entity.sensor.VsensorInfo;
-import com.springapp.mvc.sensor.SensorControl.SensorContact;
-import com.springapp.mvc.service.sensor.RtvSensorD;
-import com.springapp.mvc.service.sensor.SensorServices;
+import com.springapp.mvc.sensorControl.SensorContact;
+import com.springapp.mvc.sensorEntity.Location;
+import com.springapp.mvc.sensorEntity.PsensorInfo;
+import com.springapp.mvc.sensorEntity.VsensorInfo;
+import com.springapp.mvc.sensorService.RtvSensorD;
+import com.springapp.mvc.sensorService.SensorServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -59,7 +58,7 @@ public class HelloController {
 	@ResponseBody
 	public String rtvSensorD(@PathVariable("type") String type, @PathVariable("location") String location,
 							 @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
-		return RtvSensorD.rtvData(type,location,strdate, enddate);
+		return RtvSensorD.rtvData(type, location, strdate, enddate);
 	}
 
 	@RequestMapping(value = "/gensensor", method = RequestMethod.GET)
