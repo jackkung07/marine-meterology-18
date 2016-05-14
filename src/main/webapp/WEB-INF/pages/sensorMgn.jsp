@@ -15,6 +15,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" href="../../favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/resources/css/sensormgn.css">
 
 	<title>Dashboard</title>
 
@@ -80,18 +81,6 @@
 				<li class="active"><a href="sensorMgn">Management<span class="sr-only">(current)</span></a></li>
 				<li><a href="#">Export</a></li>
 			</ul>
-			<!-- <ul class="nav nav-sidebar">
-              <li><a href="">Nav item</a></li>
-              <li><a href="">Nav item again</a></li>
-              <li><a href="">One more nav</a></li>
-              <li><a href="">Another nav item</a></li>
-              <li><a href="">More navigation</a></li>
-            </ul> -->
-			<!-- <ul class="nav nav-sidebar">
-              <li><a href="">Nav item again</a></li>
-              <li><a href="">One more nav</a></li>
-              <li><a href="">Another nav item</a></li>
-            </ul> -->
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">Dashboard</h1>
@@ -112,69 +101,200 @@
 			</div>
 
 			<h2 class="sub-header">Sensor List</h2>
-			<div class="table-responsive">
-				<table class="table table-striped">
-					<thead>
-					<tr>
-						<th>Data Node</th>
-						<th>Sensor Id</th>
-						<th>Sensor Type</th>
-						<th>Status</th>
-						<th align="center">Function</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td>DN_001</td>
-						<td>DN_001_1001</td>
-						<td>Wind Sensor</td>
-						<td>Enabled</td>
-						<td><div class="btn-group"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal">Basic Info</button>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ConfModal">Configure</button></div></td>
-					</tr>
-					<tr>
-						<td>DN_001</td>
-						<td>DN_001_1002</td>
-						<td>Wind Sensor</td>
-						<td>Enabled</td>
-						<td><div class="btn-group"><button id="testing" type="button" class="btn btn-primary">Basic Info</button>
-							<button type="button" class="btn btn-primary">Configure</button></div></td>
-					</tr>
-					<tr>
-						<td>DN_001</td>
-						<td>DN_001_1003</td>
-						<td>Wind Sensor</td>
-						<td>Disabled</td>
-						<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>
-							<button type="button" class="btn btn-primary">Configure</button></div></td>
-					</tr>
-					<tr>
-						<td>DN_002</td>
-						<td>DN_002_1001</td>
-						<td>Wind Sensor</td>
-						<td>Disabled</td>
-						<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>
-							<button type="button" class="btn btn-primary">Configure</button></div></td>
-					</tr>
-					<tr>
-						<td>DN_002</td>
-						<td>DN_002_1002</td>
-						<td>Wind Sensor</td>
-						<td>Enabled</td>
-						<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>
-							<button type="button" class="btn btn-primary">Configure</button></div></td>
-					</tr>
-					<tr>
-						<td>DN_002</td>
-						<td>DN_002_1003</td>
-						<td>Wind Sensor</td>
-						<td>Enabled</td>
-						<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>
-							<button type="button" class="btn btn-primary">Configure</button></div></td>
-					</tr>
-					</tbody>
-				</table>
+
+
+			<div class="container">
+
+				<ul class="nav nav-tabs ">
+					<li class="active"><a data-toggle="tab" href="#sea_water_pressure">WaterPressure</a></li>
+					<li><a data-toggle="tab" href="#sea_water_temperature">WaterTemperature</a></li>
+					<li><a data-toggle="tab" href="#sea_water_practical_salinity">WaterSalinity</a></li>
+					<li><a data-toggle="tab" href="#mass_concentration_of_oxygen_in_sea_water">OxygenInWater</a></li>
+					<li><a data-toggle="tab" href="#sea_water_ph_reported_on_total_scale">WaterPH</a></li>
+					<li><a data-toggle="tab" href="#turbidity">Turbidity</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div id="sea_water_pressure" class="tab-pane fade in active">
+						<div class="table_div">
+							<div class="table-responsive">
+								<table class="table table-hover" id="sea_water_pressure_list">
+									<thead>
+									<tr>
+										<th>VirtualSensorId</th>
+										<th>PhysicalSensorId</th>
+										<th>PhysicalSensor Location</th>
+										<th>Function</th>
+									</tr>
+									</thead>
+									<tbody id="sea_water_pressure_list_tb">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="sea_water_temperature" class="tab-pane fade">
+						<div class="table_div">
+							<div class="table-responsive">
+								<table class="table table-hover" id="sea_water_temperature_list">
+									<thead>
+									<tr>
+										<th>VirtualSensorId</th>
+										<th>PhysicalSensorId</th>
+										<th>PhysicalSensor Location</th>
+										<th>Function</th>
+									</tr>
+									</thead>
+									<tbody id="sea_water_temperature_list_tb">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="sea_water_practical_salinity" class="tab-pane fade">
+						<div class="table_div">
+							<div class="table-responsive">
+								<table class="table table-hover" id="sea_water_practical_salinity_list">
+									<thead>
+									<tr>
+										<th>VirtualSensorId</th>
+										<th>PhysicalSensorId</th>
+										<th>PhysicalSensor Location</th>
+										<th>Function</th>
+									</tr>
+									</thead>
+									<tbody id="sea_water_practical_salinity_list_tb">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="mass_concentration_of_oxygen_in_sea_water" class="tab-pane fade">
+						<div class="table_div">
+							<div class="table-responsive">
+								<table class="table table-hover" id="mass_concentration_of_oxygen_in_sea_water_list">
+									<thead>
+									<tr>
+										<th>VirtualSensorId</th>
+										<th>PhysicalSensorId</th>
+										<th>PhysicalSensor Location</th>
+										<th>Function</th>
+									</tr>
+									</thead>
+									<tbody id="mass_concentration_of_oxygen_in_sea_water_list_tb">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="sea_water_ph_reported_on_total_scale" class="tab-pane fade">
+						<div class="table_div">
+							<div class="table-responsive">
+								<table class="table table-hover" id="sea_water_ph_reported_on_total_scale_list">
+									<thead>
+									<tr>
+										<th>VirtualSensorId</th>
+										<th>PhysicalSensorId</th>
+										<th>PhysicalSensor Location</th>
+										<th>Function</th>
+									</tr>
+									</thead>
+									<tbody id="sea_water_ph_reported_on_total_scale_list_tb">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="turbidity" class="tab-pane fade">
+						<div class="table_div">
+							<div class="table-responsive">
+								<table class="table table-hover" id="turbidity_list">
+									<thead>
+									<tr>
+										<th>VirtualSensorId</th>
+										<th>PhysicalSensorId</th>
+										<th>PhysicalSensor Location</th>
+										<th>Function</th>
+									</tr>
+									</thead>
+									<tbody id="turbidity_list_tb">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+
+
+			<%--<div class="table-responsive">--%>
+				<%--<table class="table table-striped">--%>
+					<%--<thead>--%>
+					<%--<tr>--%>
+						<%--<th>Data Node</th>--%>
+						<%--<th>Sensor Id</th>--%>
+						<%--<th>Sensor Type</th>--%>
+						<%--<th>Status</th>--%>
+						<%--<th align="center">Function</th>--%>
+					<%--</tr>--%>
+					<%--</thead>--%>
+					<%--<tbody>--%>
+					<%--<tr>--%>
+						<%--<td>DN_001</td>--%>
+						<%--<td>DN_001_1001</td>--%>
+						<%--<td>Wind Sensor</td>--%>
+						<%--<td>Enabled</td>--%>
+						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal">Basic Info</button>--%>
+							<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ConfModal">Configure</button></div></td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>DN_001</td>--%>
+						<%--<td>DN_001_1002</td>--%>
+						<%--<td>Wind Sensor</td>--%>
+						<%--<td>Enabled</td>--%>
+						<%--<td><div class="btn-group"><button id="testing" type="button" class="btn btn-primary">Basic Info</button>--%>
+							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>DN_001</td>--%>
+						<%--<td>DN_001_1003</td>--%>
+						<%--<td>Wind Sensor</td>--%>
+						<%--<td>Disabled</td>--%>
+						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
+							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>DN_002</td>--%>
+						<%--<td>DN_002_1001</td>--%>
+						<%--<td>Wind Sensor</td>--%>
+						<%--<td>Disabled</td>--%>
+						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
+							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>DN_002</td>--%>
+						<%--<td>DN_002_1002</td>--%>
+						<%--<td>Wind Sensor</td>--%>
+						<%--<td>Enabled</td>--%>
+						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
+							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>DN_002</td>--%>
+						<%--<td>DN_002_1003</td>--%>
+						<%--<td>Wind Sensor</td>--%>
+						<%--<td>Enabled</td>--%>
+						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
+							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
+					<%--</tr>--%>
+					<%--</tbody>--%>
+				<%--</table>--%>
+			<%--</div>--%>
+
+
+
+
+
 		</div>
 	</div>
 </div>
@@ -312,7 +432,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script type="text/javascript" src="/resources/js/jquery.min.js"><\/script>')</script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/js/sensor_configure.js"></script>
+<%--<script type="text/javascript" src="/resources/js/sensor_configure.js"></script>--%>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <!-- <script src="../../assets/js/vendor/holder.min.js"></script> -->
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
