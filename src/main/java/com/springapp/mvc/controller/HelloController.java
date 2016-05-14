@@ -5,6 +5,7 @@ import com.springapp.mvc.sensorControl.SensorLocation;
 import com.springapp.mvc.sensorControl.SensorType;
 import com.springapp.mvc.sensorEntity.Location;
 import com.springapp.mvc.sensorEntity.PsensorInfo;
+import com.springapp.mvc.sensorEntity.SDataEntity;
 import com.springapp.mvc.sensorEntity.VsensorInfo;
 import com.springapp.mvc.sensorService.RtvSensorD;
 import com.springapp.mvc.sensorService.SensorServices;
@@ -81,6 +82,20 @@ public class HelloController {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @RequestMapping(value = "/appRqstHandler/{type}/{location}/{strdate}/{enddate}", method = RequestMethod.GET)
+    @ResponseBody
+    public SDataEntity appRqstHandler(@PathVariable("type") String type, @PathVariable("location") String location,
+                                      @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
+        return null;
+
+    }
+
+    @RequestMapping(value = "/rtvSensorLst/{type}", method = RequestMethod.GET)
+    @ResponseBody
+    public VsensorInfo rtvSensorLst(@PathVariable("type") String type) {
+        return sensorservices.findVsensorByType(type);
     }
 
     @RequestMapping(value = "/gensensor", method = RequestMethod.GET)
