@@ -1,6 +1,8 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.sensorControl.SensorContact;
+import com.springapp.mvc.sensorControl.SensorLocation;
+import com.springapp.mvc.sensorControl.SensorType;
 import com.springapp.mvc.sensorEntity.Location;
 import com.springapp.mvc.sensorEntity.PsensorInfo;
 import com.springapp.mvc.sensorEntity.VsensorInfo;
@@ -65,21 +67,21 @@ public class HelloController {
 	@ResponseBody
 	public void gensensor() {
 		String PsensorId="0001";
-		String made = "samsung";
+		String made = "Samsung";
 		String model = "solar_battery";
 		String seriesnumber = "sob_0001";
-		String SensorType = SensorContact.sensortype.mass_concentration_of_oxygen_in_sea_water.name();
-		Location location = new Location(SensorContact.sensorlocation.cencoos_carquinez.name(),
-				SensorContact.sensormap.get(SensorContact.sensorlocation.cencoos_carquinez.name()).getLatitude(),
-				SensorContact.sensormap.get(SensorContact.sensorlocation.cencoos_carquinez.name()).getLongitude());
-		String Status = "Enabled";
-		PsensorInfo pitem = new PsensorInfo(PsensorId, made, model, seriesnumber, SensorType, location, Status);
+		String sensorType = SensorType.mass_concentration_of_oxygen_in_sea_water.name();
+		Location location = new Location(SensorLocation.cencoos_carquinez.name(),
+				SensorContact.sensormap.get(SensorLocation.cencoos_carquinez.name()).getLatitude(),
+				SensorContact.sensormap.get(SensorLocation.cencoos_carquinez.name()).getLongitude());
+		String Status = "Disabled";
+		PsensorInfo pitem = new PsensorInfo(PsensorId, made, model, seriesnumber, sensorType, location, Status);
 
 
 		String VsensorId="vs_0001";
 		List<PsensorInfo> PsensorList = new ArrayList<PsensorInfo>();
 		PsensorList.add(pitem);
-		VsensorInfo vitem = new VsensorInfo(VsensorId, SensorType, Status, PsensorList);
+		VsensorInfo vitem = new VsensorInfo(VsensorId, sensorType, Status, PsensorList);
 		sensorservices.createVsensor(vitem);
 
 	}
