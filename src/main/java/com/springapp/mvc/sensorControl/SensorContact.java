@@ -19,20 +19,6 @@ public class SensorContact {
     static public final String starttime = "T00:00:00Z", endtime = "T23:59:59Z";
     static public final String lfttime = "&time>=", rhttime = "&time<=";
 
-
-    static public enum sensorlocation{
-        edu_ucdavis_bml_bodega, cencoos_carquinez, edu_ucdavis_bml_fortpoint,
-        edu_humboldt_hbc, cencoos_humboldt, cencoos_monterey, edu_calpoly_marine_morro,
-        cencoos_trinidad, cencoos_tiburon
-    }
-
-    static public enum sensortype{
-        sea_water_pressure, sea_water_temperature, sea_water_practical_salinity,
-        mass_concentration_of_oxygen_in_sea_water, sea_water_ph_reported_on_total_scale, turbidity
-    }
-
-
-
     static {
         sensormap.put("edu_ucdavis_bml_bodega",new Location("edu_ucdavis_bml_bodega","38.31652","-123.0709"));
         sensormap.put("cencoos_carquinez",new Location("cencoos_carquinez","38.0657","-122.2302"));
