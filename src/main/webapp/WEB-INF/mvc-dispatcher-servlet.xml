@@ -33,53 +33,6 @@
 
     <task:annotation-driven/>
     <context:component-scan base-package="com.springapp.mvc.sensorControl"/>
-    <bean id="SchedulerTask" class="com.springapp.mvc.sensorControl.SensorMonitor">
-        <property name="sensorStatusList">
-            <list>
-                <ref bean="Sea_water_pressure"/>
-                <ref bean="Sea_water_temperature"/>
-                <ref bean="Sea_water_practical_salinity"/>
-                <ref bean="Mass_concentration_of_oxygen_in_sea_water"/>
-                <ref bean="Sea_water_ph_reported_on_total_scale"/>
-                <ref bean="Turbidity"/>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="Sea_water_pressure" class="com.springapp.mvc.sensorControl.Sensor">
-        <constructor-arg>
-            <util:constant static-field="com.springapp.mvc.sensorControl.SensorType.sea_water_pressure"/>
-        </constructor-arg>
-    </bean>
-
-    <bean id="Sea_water_temperature" class="com.springapp.mvc.sensorControl.Sensor">
-        <constructor-arg>
-            <util:constant static-field="com.springapp.mvc.sensorControl.SensorType.sea_water_temperature"/>
-        </constructor-arg>
-    </bean>
-
-    <bean id="Sea_water_practical_salinity" class="com.springapp.mvc.sensorControl.Sensor">
-        <constructor-arg>
-            <util:constant static-field="com.springapp.mvc.sensorControl.SensorType.sea_water_practical_salinity"/>
-        </constructor-arg>
-    </bean>
-
-    <bean id="Mass_concentration_of_oxygen_in_sea_water" class="com.springapp.mvc.sensorControl.Sensor">
-        <constructor-arg>
-            <util:constant static-field="com.springapp.mvc.sensorControl.SensorType.mass_concentration_of_oxygen_in_sea_water"/>
-        </constructor-arg>
-    </bean>
-
-    <bean id="Sea_water_ph_reported_on_total_scale" class="com.springapp.mvc.sensorControl.Sensor">
-        <constructor-arg>
-            <util:constant static-field="com.springapp.mvc.sensorControl.SensorType.sea_water_ph_reported_on_total_scale"/>
-        </constructor-arg>
-    </bean>
-
-    <bean id="Turbidity" class="com.springapp.mvc.sensorControl.Sensor">
-        <constructor-arg>
-            <util:constant static-field="com.springapp.mvc.sensorControl.SensorType.turbidity"/>
-        </constructor-arg>
-    </bean>
+    <bean id="SchedulerTask" class="com.springapp.mvc.sensorControl.SensorMonitor" />
 
 </beans>
