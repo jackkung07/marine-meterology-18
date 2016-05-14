@@ -30,6 +30,13 @@ public class SensorServicesImp implements SensorServices{
     }
 
     @Override
+    public VsensorInfo findVsensorByType(String type) {
+
+        VsensorInfo rst = sensorRepo.findByVsensorType(type);
+        return rst;
+    }
+
+    @Override
     public void chgVsensorStatus(String vsensorId, String newstatus) {
         sensorRepo.chgVsensorStatus(vsensorId,newstatus);
     }
@@ -48,4 +55,6 @@ public class SensorServicesImp implements SensorServices{
     public void clearSensorInfo() {
         sensorRepo.deleteAll();
     }
+
+
 }
