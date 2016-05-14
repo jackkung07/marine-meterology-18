@@ -45,6 +45,7 @@ public class HelloController {
 
     @RequestMapping(value = "/monitor", method = RequestMethod.GET)
     public String monitor(ModelMap model) {
+        //monitor
         List<Object> sensorList = new ArrayList<Object>();
         for(int i = 0; i < sensorMonitor.getAllSensors().size(); i++){
             Sensor sensor = sensorMonitor.getAllSensors().get(i);
