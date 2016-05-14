@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface SensorServices {
     public List<VsensorInfo> listAllVsensorInfo();
+    public VsensorInfo findVsensorByType(String type);
     public void createVsensor(VsensorInfo vsensorInfo);
     public void chgVsensorStatus(String vsensorId, String newstatus);
     public void chgPsensorStatus(String vsensorId, String psensorId, String newstatus);
