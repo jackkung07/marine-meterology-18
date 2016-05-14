@@ -3,7 +3,9 @@ package com.springapp.mvc.sensorControl;
 
 import com.springapp.mvc.sensorEntity.Location;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +20,7 @@ public class SensorContact {
     static public final String fixvalue = "time,latitude,longitude,";
     static public final String starttime = "T00:00:00Z", endtime = "T23:59:59Z";
     static public final String lfttime = "&time>=", rhttime = "&time<=";
+    static public final Map<String, List<String>> sensortypemap= new HashMap<String, List<String>>();
 
     static {
         sensormap.put("edu_ucdavis_bml_bodega",new Location("edu_ucdavis_bml_bodega","38.31652","-123.0709"));
@@ -29,6 +32,73 @@ public class SensorContact {
         sensormap.put("edu_calpoly_marine_morro",new Location("edu_calpoly_marine_morro","35.365","-120.8575"));
         sensormap.put("cencoos_trinidad",new Location("cencoos_trinidad","41.055","124.14703"));
         sensormap.put("cencoos_tiburon",new Location("cencoos_tiburon","37.8915","-122.4467"));
+
+        List<String> pdlst = null;
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        sensortypemap.put(SensorLocation.edu_ucdavis_bml_bodega.name(), pdlst);
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        pdlst.add(SensorType.mass_concentration_of_oxygen_in_sea_water.name());
+        pdlst.add(SensorType.sea_water_ph_reported_on_total_scale.name());
+        pdlst.add(SensorType.turbidity.name());
+        sensortypemap.put(SensorLocation.cencoos_carquinez.name(), pdlst);
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        sensortypemap.put(SensorLocation.edu_humboldt_hbc.name(), pdlst);
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        pdlst.add(SensorType.mass_concentration_of_oxygen_in_sea_water.name());
+        pdlst.add(SensorType.sea_water_ph_reported_on_total_scale.name());
+        pdlst.add(SensorType.turbidity.name());
+        sensortypemap.put(SensorLocation.cencoos_humboldt.name(), pdlst);
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        pdlst.add(SensorType.mass_concentration_of_oxygen_in_sea_water.name());
+        pdlst.add(SensorType.sea_water_ph_reported_on_total_scale.name());
+        pdlst.add(SensorType.turbidity.name());
+        sensortypemap.put(SensorLocation.cencoos_monterey.name(), pdlst);
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        pdlst.add(SensorType.mass_concentration_of_oxygen_in_sea_water.name());
+        pdlst.add(SensorType.turbidity.name());
+        sensortypemap.put(SensorLocation.edu_calpoly_marine_morro.name(), pdlst);
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        pdlst.add(SensorType.sea_water_ph_reported_on_total_scale.name());
+        pdlst.add(SensorType.turbidity.name());
+        sensortypemap.put(SensorLocation.cencoos_trinidad.name(), pdlst);
+
+        pdlst = new ArrayList<String> ();
+        pdlst.add(SensorType.sea_water_pressure.name());
+        pdlst.add(SensorType.sea_water_temperature.name());
+        pdlst.add(SensorType.sea_water_practical_salinity.name());
+        pdlst.add(SensorType.mass_concentration_of_oxygen_in_sea_water.name());
+        pdlst.add(SensorType.sea_water_ph_reported_on_total_scale.name());
+        pdlst.add(SensorType.turbidity.name());
+        sensortypemap.put(SensorLocation.cencoos_tiburon.name(), pdlst);
+
     }
 
     static public String buildurl(String Stype, String Slocation, String Strdate, String Enddate){

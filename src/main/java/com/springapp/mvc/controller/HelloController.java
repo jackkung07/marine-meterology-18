@@ -67,24 +67,24 @@ public class HelloController {
 	@ResponseBody
 	public void gensensor() {
 		String PsensorId="0001";
-		String made = "Samsung";
+		String made = "LG";
 		String model = "solar_battery";
-		String seriesnumber = "sob_0001";
-		String sensorType = SensorType.mass_concentration_of_oxygen_in_sea_water.name();
+		String seriesnumber = "sob_0002";
+		String sensorType = SensorType.sea_water_ph_reported_on_total_scale.name();
 		Location location = new Location(SensorLocation.cencoos_carquinez.name(),
 				SensorContact.sensormap.get(SensorLocation.cencoos_carquinez.name()).getLatitude(),
 				SensorContact.sensormap.get(SensorLocation.cencoos_carquinez.name()).getLongitude());
-		String Status = "Disabled";
+		String Status = "Enabled";
 		PsensorInfo pitem = new PsensorInfo(PsensorId, made, model, seriesnumber, sensorType, location, Status);
 
 
-		String VsensorId="vs_0001";
+		String VsensorId="vs_0002";
 		List<PsensorInfo> PsensorList = new ArrayList<PsensorInfo>();
 		PsensorList.add(pitem);
 		VsensorInfo vitem = new VsensorInfo(VsensorId, sensorType, Status, PsensorList);
 		sensorservices.createVsensor(vitem);
 
-	}
+		}
 
 
 }
