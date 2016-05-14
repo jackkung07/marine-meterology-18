@@ -6,6 +6,7 @@ package com.springapp.mvc.sensorControl;
 public enum SensorStatus {
     UNKNOWN,
     DOWN,
-    WARNING,
-    STABLE
+    UP,
+    ON,
+    OFF
 }
