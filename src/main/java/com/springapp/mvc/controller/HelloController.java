@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -66,23 +67,40 @@ public class HelloController {
 	@RequestMapping(value = "/gensensor", method = RequestMethod.GET)
 	@ResponseBody
 	public void gensensor() {
-		String PsensorId="0001";
+
+		sensorservices.clearSensorInfo();
+		String PsensorId="";
 		String made = "LG";
 		String model = "solar_battery";
 		String seriesnumber = "sob_0002";
-		String sensorType = SensorType.sea_water_ph_reported_on_total_scale.name();
-		Location location = new Location(SensorLocation.cencoos_carquinez.name(),
-				SensorContact.sensormap.get(SensorLocation.cencoos_carquinez.name()).getLatitude(),
-				SensorContact.sensormap.get(SensorLocation.cencoos_carquinez.name()).getLongitude());
+		String sensorType ="";
+		Location location = null;
 		String Status = "Enabled";
-		PsensorInfo pitem = new PsensorInfo(PsensorId, made, model, seriesnumber, sensorType, location, Status);
+		int id=1;
 
+		//sensor type
+		for(Map.Entry<String, List<String>> entry: SensorContact.sensortypemap.entrySet()){
+			//System.out.println(entry.getKey().toString());
+			String VsensorId="vs_" + String.valueOf(id++);
+			sensorType = entry.getKey().toString();
+			//sensor location
+			List<PsensorInfo> PsensorList = new ArrayList<PsensorInfo>();
 
-		String VsensorId="vs_0002";
-		List<PsensorInfo> PsensorList = new ArrayList<PsensorInfo>();
-		PsensorList.add(pitem);
-		VsensorInfo vitem = new VsensorInfo(VsensorId, sensorType, Status, PsensorList);
-		sensorservices.createVsensor(vitem);
+			for(int i=0; i<entry.getValue().size(); i++)
+			{
+				PsensorId = VsensorId + "_ps_" + String.valueOf(i);
+				location = new Location(entry.getValue().get(i),
+						SensorContact.sensormap.get(entry.getValue().get(i)).getLatitude(),
+						SensorContact.sensormap.get(entry.getValue().get(i)).getLongitude());
+				PsensorInfo pitem = new PsensorInfo(PsensorId, made, model, seriesnumber, sensorType, location, Status);
+				PsensorList.add(pitem);
+
+			}
+			VsensorInfo vitem = new VsensorInfo(VsensorId, sensorType, Status, PsensorList);
+			sensorservices.createVsensor(vitem);
+				//System.out.println(entry.getValue().get(i));
+		}
+
 
 		}
 

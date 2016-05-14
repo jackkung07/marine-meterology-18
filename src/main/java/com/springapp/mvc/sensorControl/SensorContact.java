@@ -23,15 +23,15 @@ public class SensorContact {
     static public final Map<String, List<String>> sensortypemap= new HashMap<String, List<String>>();
 
     static {
-        sensormap.put("edu_ucdavis_bml_bodega",new Location("edu_ucdavis_bml_bodega","38.31652","-123.0709"));
-        sensormap.put("cencoos_carquinez",new Location("cencoos_carquinez","38.0657","-122.2302"));
-        sensormap.put("edu_ucdavis_bml_fortpoint",new Location("edu_ucdavis_bml_fortpoint","37.80663","-122.4662"));
-        sensormap.put("edu_humboldt_hbc",new Location("edu_humboldt_hbc","40.8013","-124.1816"));
-        sensormap.put("cencoos_humboldt",new Location("cencoos_humboldt","40.7775","-124.19652"));
-        sensormap.put("cencoos_monterey",new Location("cencoos_monterey","36.60513","-121.88935"));
-        sensormap.put("edu_calpoly_marine_morro",new Location("edu_calpoly_marine_morro","35.365","-120.8575"));
-        sensormap.put("cencoos_trinidad",new Location("cencoos_trinidad","41.055","124.14703"));
-        sensormap.put("cencoos_tiburon",new Location("cencoos_tiburon","37.8915","-122.4467"));
+        sensormap.put(SensorLocation.edu_ucdavis_bml_bodega.name(),new Location(SensorLocation.edu_ucdavis_bml_bodega.name(),"38.31652","-123.0709"));
+        sensormap.put(SensorLocation.cencoos_carquinez.name(),new Location(SensorLocation.cencoos_carquinez.name(),"38.0657","-122.2302"));
+        sensormap.put(SensorLocation.edu_ucdavis_bml_fortpoint.name(),new Location(SensorLocation.edu_ucdavis_bml_fortpoint.name(),"37.80663","-122.4662"));
+        sensormap.put(SensorLocation.edu_humboldt_hbc.name(),new Location(SensorLocation.edu_humboldt_hbc.name(),"40.8013","-124.1816"));
+        sensormap.put(SensorLocation.cencoos_humboldt.name(),new Location(SensorLocation.cencoos_humboldt.name(),"40.7775","-124.19652"));
+        sensormap.put(SensorLocation.cencoos_monterey.name(),new Location(SensorLocation.cencoos_monterey.name(),"36.60513","-121.88935"));
+        sensormap.put(SensorLocation.edu_calpoly_marine_morro.name(),new Location(SensorLocation.edu_calpoly_marine_morro.name(),"35.365","-120.8575"));
+        sensormap.put(SensorLocation.cencoos_trinidad.name(),new Location(SensorLocation.cencoos_trinidad.name(),"41.055","124.14703"));
+        sensormap.put(SensorLocation.cencoos_tiburon.name(),new Location(SensorLocation.cencoos_tiburon.name(),"37.8915","-122.4467"));
 
         List<String> pdlst = null;
 
