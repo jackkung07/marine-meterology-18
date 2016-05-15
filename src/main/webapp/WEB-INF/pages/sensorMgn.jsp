@@ -132,6 +132,8 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="vs_div" id = "sea_water_pressure_vsensor_div">
+							</div>
 						</div>
 					</div>
 					<div id="sea_water_temperature" class="tab-pane fade">
@@ -149,6 +151,8 @@
 									<tbody id="sea_water_temperature_list_tb">
 									</tbody>
 								</table>
+							</div>
+							<div class="vs_div" id = "sea_water_temperature_vsensor_div">
 							</div>
 						</div>
 					</div>
@@ -168,6 +172,8 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="vs_div" id = "sea_water_practical_salinity_vsensor_div">
+							</div>
 						</div>
 					</div>
 					<div id="mass_concentration_of_oxygen_in_sea_water" class="tab-pane fade">
@@ -185,6 +191,8 @@
 									<tbody id="mass_concentration_of_oxygen_in_sea_water_list_tb">
 									</tbody>
 								</table>
+							</div>
+							<div class="vs_div" id = "mass_concentration_of_oxygen_in_sea_water_vsensor_div">
 							</div>
 						</div>
 					</div>
@@ -204,6 +212,8 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="vs_div" id = "sea_water_ph_reported_on_total_scale_vsensor_div">
+							</div>
 						</div>
 					</div>
 					<div id="turbidity" class="tab-pane fade">
@@ -222,6 +232,9 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="vs_div" id = "turbidity_vsensor_div">
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -277,71 +290,6 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- Sensor info Configure Modal -->
-<div class="modal fade" id="ConfModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
-				<h3 class="modal-title">Big Title</h3>
-			</div>
-			<div class="modal-body">
-				<h5 class="text-center">Hello. Some text here.</h5>
-				<table class="table table-striped" id="conftblGrid">
-					<thead id="contblHead">
-					<tr>
-						<th>Description</th>
-						<th>Value</th>
-						<th class="text-right">Value Date</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr><td>IP Version</td>
-						<td><input type="text" class="form-control" value="IPv4 device"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>IP Address</td>
-						<td><input type="text" class="form-control" value="192.168.0.1"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Report schedule</td>
-						<td><input type="text" class="form-control" value="every 2mins"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Sensing arrange</td>
-						<td><input type="text" class="form-control" value="10miles"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Port</td>
-						<td><input type="text" class="form-control" value="8080"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Scanning interval</td>
-						<td><input type="text" class="form-control" value="1sec"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Data retrieving format</td>
-						<td><input type="text" class="form-control" value="JSON"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Sensor Status</td>
-						<td>Enabled: <input type="checkbox" id="newstatus" checked="true"></td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-				</table>
-				<div class="form-group">
-					<input type="button" class="btn btn-warning btn-sm pull-right" value="Reset">
-					<div class="clearfix"></div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save Changes</button>
-			</div>
-
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -359,6 +307,11 @@
 	$(document).ready(function(){
 //alert("dd");
 		Refresh_turbidity_lst();
+		Refresh_sea_water_ph_reported_on_total_scale_lst();
+		Refresh_mass_concentration_of_oxygen_in_sea_water_lst();
+		Refresh_sea_water_practical_salinity_lst();
+		Refresh_sea_water_temperature_lst();
+		Refresh_sea_water_pressure_lst();
 	});
 </script>
 </body>
