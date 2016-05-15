@@ -46,6 +46,12 @@ public class HelloController {
         return "sensorMgn";
     }
 
+    @RequestMapping(value = "/monitor", method = RequestMethod.GET)
+    public String monitorhome(ModelMap model) {
+        //model.addAttribute("message", "Hello world!");
+        return "monitor";
+    }
+
     @RequestMapping(value = "/monitor/{type}", method = RequestMethod.GET)
     @ResponseBody
     public VsensorInfo monitor(@PathVariable("type") String type) {
