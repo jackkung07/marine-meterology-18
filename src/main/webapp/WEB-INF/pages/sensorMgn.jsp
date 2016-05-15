@@ -16,6 +16,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="../../favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/resources/css/sensormgn.css">
+	<link href="/resources/css/bootstrap-switch.css" rel="stylesheet">
 
 	<title>Dashboard</title>
 
@@ -211,9 +212,9 @@
 								<table class="table table-hover" id="turbidity_list">
 									<thead>
 									<tr>
-										<th>VirtualSensorId</th>
 										<th>PhysicalSensorId</th>
 										<th>PhysicalSensor Location</th>
+										<th>Status</th>
 										<th>Function</th>
 									</tr>
 									</thead>
@@ -225,76 +226,6 @@
 					</div>
 				</div>
 			</div>
-
-
-			<%--<div class="table-responsive">--%>
-				<%--<table class="table table-striped">--%>
-					<%--<thead>--%>
-					<%--<tr>--%>
-						<%--<th>Data Node</th>--%>
-						<%--<th>Sensor Id</th>--%>
-						<%--<th>Sensor Type</th>--%>
-						<%--<th>Status</th>--%>
-						<%--<th align="center">Function</th>--%>
-					<%--</tr>--%>
-					<%--</thead>--%>
-					<%--<tbody>--%>
-					<%--<tr>--%>
-						<%--<td>DN_001</td>--%>
-						<%--<td>DN_001_1001</td>--%>
-						<%--<td>Wind Sensor</td>--%>
-						<%--<td>Enabled</td>--%>
-						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal">Basic Info</button>--%>
-							<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ConfModal">Configure</button></div></td>--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>DN_001</td>--%>
-						<%--<td>DN_001_1002</td>--%>
-						<%--<td>Wind Sensor</td>--%>
-						<%--<td>Enabled</td>--%>
-						<%--<td><div class="btn-group"><button id="testing" type="button" class="btn btn-primary">Basic Info</button>--%>
-							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>DN_001</td>--%>
-						<%--<td>DN_001_1003</td>--%>
-						<%--<td>Wind Sensor</td>--%>
-						<%--<td>Disabled</td>--%>
-						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
-							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>DN_002</td>--%>
-						<%--<td>DN_002_1001</td>--%>
-						<%--<td>Wind Sensor</td>--%>
-						<%--<td>Disabled</td>--%>
-						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
-							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>DN_002</td>--%>
-						<%--<td>DN_002_1002</td>--%>
-						<%--<td>Wind Sensor</td>--%>
-						<%--<td>Enabled</td>--%>
-						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
-							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
-					<%--</tr>--%>
-					<%--<tr>--%>
-						<%--<td>DN_002</td>--%>
-						<%--<td>DN_002_1003</td>--%>
-						<%--<td>Wind Sensor</td>--%>
-						<%--<td>Enabled</td>--%>
-						<%--<td><div class="btn-group"><button type="button" class="btn btn-primary">Basic Info</button>--%>
-							<%--<button type="button" class="btn btn-primary">Configure</button></div></td>--%>
-					<%--</tr>--%>
-					<%--</tbody>--%>
-				<%--</table>--%>
-			<%--</div>--%>
-
-
-
-
-
 		</div>
 	</div>
 </div>
@@ -308,47 +239,32 @@
 				<h3 class="modal-title">Sensor Information</h3>
 			</div>
 			<div class="modal-body">
-				<h5 class="text-center">Sensor Id: DN_001_1001</h5>
+				<h5 class="text-center">Sensor Id: <a id="basic_psensorid"></a></h5>
 				<table class="table table-striped" id="tblGrid">
 					<thead id="tblHead">
 					<tr>
 						<th>Description</th>
 						<th>Value</th>
-						<th class="text-right">Value Date</th>
 					</tr>
 					</thead>
 					<tbody>
 					<tr><td>Made</td>
-						<td>Samsung</td>
-						<td class="text-right">12/4/2015</td>
+						<td id="basic_made"></td>
 					</tr>
 					<tr><td>Product Model</td>
-						<td>PM_10003_45</td>
-						<td class="text-right">12/4/2015</td>
+						<td id="basic_model"></td>
 					</tr>
 					<tr><td>Product Series Number</td>
-						<td>PM_10003_45_XP_586</td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Data Node</td>
-						<td>DN_001</td>
-						<td class="text-right">12/4/2015</td>
-					</tr>
-					<tr><td>Sensor ID</td>
-						<td>DN_001_1001</td>
-						<td class="text-right">12/4/2015</td>
+						<td id="basic_series"></td>
 					</tr>
 					<tr><td>Sensor Type</td>
-						<td>Wind Sensor</td>
-						<td class="text-right">12/4/2015</td>
+						<td id="basic_sensortype"></td>
 					</tr>
 					<tr><td>Sensor Location</td>
-						<td><a>Longitude: </a><a>0.234131</a><br><a>Latitude: </a><a>1.30433</a></td>
-						<td class="text-right">12/4/2015</td>
+						<td id="basic_location"></td>
 					</tr>
 					<tr><td>Sensor Status</td>
-						<td><a id="status">Enabled</a></td>
-						<td class="text-right">12/4/2015</td>
+						<td id="basic_status"></td>
 					</tr>
 					</tbody>
 				</table>
@@ -432,10 +348,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script type="text/javascript" src="/resources/js/jquery.min.js"><\/script>')</script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/sensorMgn.js"></script>
+<script src="/resources/js/bootstrap-switch.js"></script>
 <%--<script type="text/javascript" src="/resources/js/sensor_configure.js"></script>--%>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <!-- <script src="../../assets/js/vendor/holder.min.js"></script> -->
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<script>
+	$(document).ready(function(){
+//alert("dd");
+		Refresh_turbidity_lst();
+	});
+</script>
 </body>
 </html>

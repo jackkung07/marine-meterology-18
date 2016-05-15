@@ -33,12 +33,12 @@ public class VsensorInfo {
     }
 
     @PersistenceConstructor
-    public VsensorInfo(String VsensorId, String SensorType, String Status, List<PsensorInfo> PsensorList) {
+    public VsensorInfo(String vsensorId, String sensorType, String status, List<PsensorInfo> psensorList) {
         super();
-        this.vsensorId = VsensorId;
-        this.sensorType = SensorType;
-        this.status = Status;
-        this.psensorList = PsensorList;
+        this.vsensorId = vsensorId;
+        this.sensorType = sensorType;
+        this.status = status;
+        this.psensorList = psensorList;
     }
 
     @Override

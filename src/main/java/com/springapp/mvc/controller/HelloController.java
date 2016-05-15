@@ -112,7 +112,7 @@ public class HelloController {
     public void gensensor() {
 
         sensorservices.clearSensorInfo();
-        String PsensorId = "";
+        String psensorId = "";
         String made = "LG";
         String model = "solar_battery";
         String seriesnumber = "sob_0002";
@@ -130,11 +130,11 @@ public class HelloController {
             List<PsensorInfo> PsensorList = new ArrayList<PsensorInfo>();
 
             for (int i = 0; i < entry.getValue().size(); i++) {
-                PsensorId = VsensorId + "_ps_" + String.valueOf(i);
+                psensorId = VsensorId + "_ps_" + String.valueOf(i);
                 location = new Location(entry.getValue().get(i),
                         SensorContact.sensormap.get(entry.getValue().get(i)).getLatitude(),
                         SensorContact.sensormap.get(entry.getValue().get(i)).getLongitude());
-                PsensorInfo pitem = new PsensorInfo(PsensorId, made, model, seriesnumber, sensorType, location, Status);
+                PsensorInfo pitem = new PsensorInfo(psensorId, made, model, seriesnumber, sensorType, location, Status);
                 PsensorList.add(pitem);
 
             }

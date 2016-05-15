@@ -6,7 +6,7 @@ package com.springapp.mvc.sensorEntity;
 public class PsensorInfo {
 
     //unique
-    private String PsensorId;
+    private String psensorId;
     private String made;
     private String model;
     private String seriesnumber;
@@ -16,9 +16,9 @@ public class PsensorInfo {
 
     public PsensorInfo(){}
 
-    public PsensorInfo(String PsensorId, String made, String model, String seriesnumber, String SensorType,
+    public PsensorInfo(String psensorId, String made, String model, String seriesnumber, String SensorType,
                        Location location, String Status){
-        this.PsensorId=PsensorId;
+        this.psensorId=psensorId;
         this.made=made;
         this.model=model;
         this.seriesnumber=seriesnumber;
@@ -28,11 +28,11 @@ public class PsensorInfo {
     }
 
     public String getPsensorId() {
-        return PsensorId;
+        return psensorId;
     }
 
     public void setPsensorId(String psensorId) {
-        PsensorId = psensorId;
+        psensorId = psensorId;
     }
 
     public String getMade() {

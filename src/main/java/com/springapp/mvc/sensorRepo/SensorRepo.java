@@ -16,6 +16,6 @@ public interface SensorRepo extends CrudRepository<VsensorInfo, String>, SensorR
     public VsensorInfo findByVsensorId(String vsensorId);
 
     @Query("{'sensorType' : ?0}")
-    public VsensorInfo findByVsensorType(String sensorType);
+    public VsensorInfo findBySensorType(String sensorType);
 
 }

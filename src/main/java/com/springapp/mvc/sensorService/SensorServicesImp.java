@@ -32,7 +32,7 @@ public class SensorServicesImp implements SensorServices{
     @Override
     public VsensorInfo findVsensorByType(String type) {
 
-        VsensorInfo rst = sensorRepo.findByVsensorType(type);
+        VsensorInfo rst = sensorRepo.findBySensorType(type);
         return rst;
     }
 
