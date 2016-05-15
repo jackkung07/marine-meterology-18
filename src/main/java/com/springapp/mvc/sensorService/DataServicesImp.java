@@ -2,7 +2,9 @@ package com.springapp.mvc.sensorService;
 
 import com.springapp.mvc.sensorControl.*;
 import com.springapp.mvc.sensorEntity.Location;
+import com.springapp.mvc.sensorEntity.PsensorInfo;
 import com.springapp.mvc.sensorEntity.SDataEntity;
+import com.springapp.mvc.sensorEntity.VsensorInfo;
 import com.springapp.mvc.sensorRepo.DataRepo;
 import com.springapp.mvc.sensorRepo.SensorRepo;
 import org.json.JSONArray;
@@ -33,6 +35,9 @@ public class DataServicesImp implements DataServices {
 
     @Autowired
     RtvSensorD rtvSensorD;
+
+    @Autowired
+    SensorServices sensorServices;
 
     @Override
     public void saveData(SensorType sensorType, SensorLocation sensorLocation, String json) {
@@ -85,6 +90,11 @@ public class DataServicesImp implements DataServices {
             endDate = endDate.substring(0, endDate.lastIndexOf("T"));
         }
 
+        //check if sensor is enable and up
+        if (!isSensorOn(sensorType, sensorLocation) || !isSensorUP(sensorType, sensorLocation)) {
+            return null;
+        }
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date1;
         Date date2;
@@ -95,24 +105,14 @@ public class DataServicesImp implements DataServices {
             if (date1.compareTo(date2) < 0 || date1.compareTo(date2) == 0) {
                 while (date1.compareTo(date2) <= 0) {
                     List<SDataEntity> temp = dataRepo.findDataList(sensorType.toString(), sensorLocation.toString(), startDate);
-                    if(temp.size() <= 1){
-                        boolean isSensorActive = false;
-                        List<Sensor> sensorList = sensorMonitor.getAllSensors();
-                        for(Sensor senor: sensorList){
-                            if(senor.getSensorType().equals(sensorType) && senor.getSensorLocation().equals(sensorLocation)){
-                                if(senor.getSensorStatus().equals(SensorStatus.UP)){
-                                    isSensorActive = true;
-                                }
-                                break;
-                            }
+                    if (temp.size() <= 1) {
+                        Future<String> res = rtvSensorD.rtvData(sensorType.toString(), sensorLocation.toString(), startDate, startDate);
+                        while (!res.isDone()) {
+                            Thread.sleep(500);
                         }
-                        if(isSensorActive) {
-                            Future<String> res = rtvSensorD.rtvData(sensorType.toString(), sensorLocation.toString(), startDate, startDate);
-                            while (!res.isDone()) {
-                                Thread.sleep(500);
-                            }
-                            saveData(sensorType, sensorLocation, res.get());
-                        }
+                        String json = res.get();
+                        saveData(sensorType, sensorLocation, json);
+                        temp = dataRepo.findDataList(sensorType.toString(), sensorLocation.toString(), startDate);
                     }
                     sDataEntityList.addAll(temp);
                     startDate = dateIncrement(startDate);
@@ -121,11 +121,11 @@ public class DataServicesImp implements DataServices {
                 return sDataEntityList;
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            return null;
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            return null;
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            return null;
         }
         return null;
     }
@@ -140,12 +140,40 @@ public class DataServicesImp implements DataServices {
         return sDataEntityList;
     }
 
-    public String dateIncrement(String startdate) throws ParseException {
+    private String dateIncrement(String startdate) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
         c.setTime(sdf.parse(startdate));
         c.add(Calendar.DATE, 1);  // number of days to add
         return sdf.format(c.getTime()).toString();
+    }
+
+    private boolean isSensorOn(SensorType sensorType, SensorLocation sensorLocation) {
+        VsensorInfo vsensorInfo = sensorServices.findVsensorByType(sensorType.toString());
+        if (vsensorInfo.getStatus().equals(SensorStatus.ENABLE)) {
+            for (PsensorInfo psensorInfo : vsensorInfo.getPsensorList()) {
+                if (psensorInfo.getLocation().equals(sensorLocation)) {
+                    if (psensorInfo.getStatus().equals(SensorStatus.ENABLE)) {
+                        return true;
+                    }
+                    break;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isSensorUP(SensorType sensorType, SensorLocation sensorLocation) {
+        List<Sensor> sensorList = sensorMonitor.getAllSensors();
+        for (Sensor senor : sensorList) {
+            if (senor.getSensorType().equals(sensorType) && senor.getSensorLocation().equals(sensorLocation)) {
+                if (senor.getSensorStatus().equals(SensorStatus.UP)) {
+                    return true;
+                }
+                break;
+            }
+        }
+        return false;
     }
 
 }

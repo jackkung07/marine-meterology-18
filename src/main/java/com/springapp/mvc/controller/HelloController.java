@@ -101,7 +101,6 @@ public class HelloController {
     public List<SDataEntity> appRqstHandler(@PathVariable("type") String type, @PathVariable("location") String location,
                                       @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
         return dataServices.findDataList(SensorType.valueOf(type), SensorLocation.valueOf(location), strdate, enddate);
-
     }
 
     @RequestMapping(value = "/rtvSensorLst/{type}", method = RequestMethod.GET)

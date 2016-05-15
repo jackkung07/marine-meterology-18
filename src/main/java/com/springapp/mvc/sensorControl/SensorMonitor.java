@@ -63,12 +63,6 @@ public class SensorMonitor {
                 }
             }
         }
-//        System.out.println("sea water pressure total sensors: " + seaWaterPressureList.size());
-//        System.out.println("sea water temperature total sensors: " + seaWaterTemperatureList.size());
-//        System.out.println("sea water practical salinity total sensors: " + seaWaterPracticalSalinityList.size());
-//        System.out.println("mass oxygen total sensors: " + massConcOxygenList.size());
-//        System.out.println("sea water ph total sensors: " + seaWaterPhList.size());
-//        System.out.println("turbidity total sensors: " + turbidityList.size());
     }
 
     public List<Sensor> getAllSensors() {
@@ -105,24 +99,23 @@ public class SensorMonitor {
                 while(!(res.isDone())){
                     Thread.sleep(500);
                 }
-                if (!(res.get().equals("null")) && checkStatus(res.get())) {
-                    dataServices.saveData(sensorList.get(i).getSensorType(), sensorList.get(i).getSensorLocation(), res.get());
+                String json = res.get();
+                if (!(json.equals("null")) && checkDataValidity(json)) {
+                    dataServices.saveData(sensorList.get(i).getSensorType(), sensorList.get(i).getSensorLocation(), json);
                     sensorList.get(i).setSensorStatus(SensorStatus.UP);
                 } else {
                     sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
                 }
             } catch (InterruptedException e) {
-//                e.printStackTrace();
                 sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
             } catch (ExecutionException e) {
-//                e.printStackTrace();
                 sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
             }
             System.out.println(sensorList.get(i).toString());
         }
     }
 
-    private boolean checkStatus(String json) {
+    private boolean checkDataValidity(String json) {
         JSONObject result = new JSONObject(json);
         JSONObject table = result.getJSONObject("table");
         JSONArray rows = table.getJSONArray("rows");
