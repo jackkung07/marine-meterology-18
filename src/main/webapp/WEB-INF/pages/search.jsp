@@ -81,8 +81,8 @@
             <ul class="nav nav-sidebar">
                 <li><a href="/">Home</a></li>
                 <li class="active"><a href="">Search <span class="sr-only">(current)</span></a></li>
-                <li><a href="monitor">monitor</a></li>
-                <li><a href="#">Analytics</a></li>
+                <li><a href="monitor">Monitor</a></li>
+                <li><a href="#">Management</a></li>
                 <li><a href="#">Export</a></li>
             </ul>
             <!-- <ul class="nav nav-sidebar">
