@@ -1,5 +1,6 @@
 package com.springapp.mvc.sensorControl;
 
+import com.springapp.mvc.sensorService.DataServices;
 import com.springapp.mvc.sensorService.RtvSensorD;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,6 +24,9 @@ public class SensorMonitor {
 
     @Autowired
     RtvSensorD rtvSensorD;
+
+    @Autowired
+    DataServices dataServices;
 
     private List<Sensor> seaWaterPressureList = new ArrayList<Sensor>();
     private List<Sensor> seaWaterTemperatureList = new ArrayList<Sensor>();
@@ -70,7 +74,11 @@ public class SensorMonitor {
     public List<Sensor> getAllSensors() {
         List<Sensor> sensorList = new ArrayList<Sensor>();
         sensorList.addAll(seaWaterPressureList);
-
+        sensorList.addAll(seaWaterTemperatureList);
+        sensorList.addAll(seaWaterPracticalSalinityList);
+        sensorList.addAll(massConcOxygenList);
+        sensorList.addAll(seaWaterPhList);
+        sensorList.addAll(turbidityList);
         return sensorList;
     }
 
@@ -98,6 +106,7 @@ public class SensorMonitor {
                     Thread.sleep(500);
                 }
                 if (!(res.get().equals("null")) && checkStatus(res.get())) {
+                    dataServices.saveData(sensorList.get(i).getSensorType(), sensorList.get(i).getSensorLocation(), res.get());
                     sensorList.get(i).setSensorStatus(SensorStatus.UP);
                 } else {
                     sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
@@ -127,6 +136,4 @@ public class SensorMonitor {
         }
         return true;
     }
-
-
 }

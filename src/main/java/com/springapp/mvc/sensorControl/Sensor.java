@@ -46,6 +46,6 @@ public class Sensor {
 
     @Override
     public String toString(){
-        return "Sensor Type: " + sensorType.toString() + " Sensor Location: " + sensorLocation.toString() + " Sensor Status: " + sensorStatus.toString();
+        return "SensorType: " + sensorType.toString() + " SensorLocation: " + sensorLocation.toString() + " SensorStatus: " + sensorStatus.toString();
     }
 }

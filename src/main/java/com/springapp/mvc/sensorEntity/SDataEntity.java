@@ -15,12 +15,15 @@ public class SDataEntity {
     @Id
     private String Id;
     String sensorType;
-    String sensorLocation;
+    Location sensorLocation;
     String dataDateTime;
     String dataValue;
 
+    public SDataEntity() {
+    }
+
     @PersistenceConstructor
-    public SDataEntity(String sensorType, String sensorLocation, String dataDateTime, String dataValue) {
+    public SDataEntity(String sensorType, Location sensorLocation, String dataDateTime, String dataValue) {
         super();
         this.sensorType = sensorType;
         this.sensorLocation = sensorLocation;
@@ -36,11 +39,11 @@ public class SDataEntity {
         this.sensorType = sensorType;
     }
 
-    public String getSensorLocation() {
+    public Location getSensorLocation() {
         return sensorLocation;
     }
 
-    public void setSensorLocation(String sensorLocation) {
+    public void setSensorLocation(Location sensorLocation) {
         this.sensorLocation = sensorLocation;
     }
 
