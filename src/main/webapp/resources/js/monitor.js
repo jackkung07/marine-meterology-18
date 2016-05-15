@@ -45,7 +45,7 @@ function Refresh_sea_water_pressure_lst(refreshMap) {
         type: "GET",
         DataType: "json",
         error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            //alert("An error occured: " + xhr.status + " " + xhr.statusText);
         },
         success: function (result) {
 
@@ -100,7 +100,7 @@ function Refresh_sea_water_temperature_lst(refreshMap) {
         type: "GET",
         DataType: "json",
         error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            //alert("An error occured: " + xhr.status + " " + xhr.statusText);
         },
         success: function (result) {
 
@@ -155,7 +155,7 @@ function Refresh_sea_water_practical_salinity_lst(refreshMap) {
         type: "GET",
         DataType: "json",
         error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            //alert("An error occured: " + xhr.status + " " + xhr.statusText);
         },
         success: function (result) {
 
@@ -210,7 +210,7 @@ function Refresh_mass_concentration_of_oxygen_in_sea_water_lst(refreshMap) {
         type: "GET",
         DataType: "json",
         error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            //alert("An error occured: " + xhr.status + " " + xhr.statusText);
         },
         success: function (result) {
 
@@ -265,7 +265,7 @@ function Refresh_sea_water_ph_reported_on_total_scale_lst(refreshMap) {
         type: "GET",
         DataType: "json",
         error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            //alert("An error occured: " + xhr.status + " " + xhr.statusText);
         },
         success: function (result) {
 
@@ -320,7 +320,7 @@ function Refresh_turbidity_lst(refreshMap) {
         type: "GET",
         DataType: "json",
         error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            //alert("An error occured: " + xhr.status + " " + xhr.statusText);
         },
         success: function (result) {
 
