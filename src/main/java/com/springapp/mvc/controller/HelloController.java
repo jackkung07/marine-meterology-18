@@ -107,6 +107,24 @@ public class HelloController {
         return sensorservices.findVsensorByType(type);
     }
 
+
+    @RequestMapping(value = "/chgSensorStatus/{VsensorId}/{PsensorId}/{status}", method = RequestMethod.POST)
+    @ResponseBody
+    public void chgSensorStatus(@PathVariable("VsensorId") String VsensorId,
+                                    @PathVariable("PsensorId") String PsensorId, @PathVariable("status") String status) {
+
+        if(PsensorId.equals("_"))
+        {
+            sensorservices.chgVsensorStatus(VsensorId,status);
+        }
+        else
+        {
+            sensorservices.chgPsensorStatus(VsensorId,PsensorId,status);
+        }
+
+        return;
+    }
+
     @RequestMapping(value = "/gensensor", method = RequestMethod.GET)
     @ResponseBody
     public void gensensor() {

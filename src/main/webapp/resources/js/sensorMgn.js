@@ -58,9 +58,73 @@ function basicinfo(id){
     return true;
 }
 
-function onswitchchange(event, state, id){
-    alert(id);
+function psensorstatuschange(vid, pid, status, sensorType){
+
+    $.ajax({url: "/chgSensorStatus/"+vid+"/"+pid+"/"+status,
+        type: "POST",
+        DataType: "text",
+        error: function(xhr){
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        },
+        success: function(result){
+            if(sensorType=="sea_water_pressure")
+                Refresh_sea_water_pressure_lst();
+            else if(sensorType=="sea_water_temperature")
+                Refresh_sea_water_temperature_lst();
+            else if(sensorType=="sea_water_practical_salinity")
+                Refresh_sea_water_practical_salinity_lst();
+            else if(sensorType=="mass_concentration_of_oxygen_in_sea_water")
+                Refresh_mass_concentration_of_oxygen_in_sea_water_lst();
+            else if(sensorType=="sea_water_ph_reported_on_total_scale")
+                Refresh_sea_water_ph_reported_on_total_scale_lst();
+            else if(sensorType=="turbidity")
+                Refresh_turbidity_lst();
+
+        }});
+
     return true;
+}
+
+function Refresh_sea_water_pressure_lst(){
+
+
+    var name_name = "nname";
+    var price_name="price";
+    var calo_name="calo";
+    var pre_time_name="pre_time"
+
+    var category = "Appetizer";
+    $.ajax({url: "/menu/findmenu/"+category,
+        type: "GET",
+        DataType: "text",
+        error: function(xhr){
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        },
+        success: function(result){
+            var url = location.href;
+            var baseURL= url.substring(0, url.indexOf('/', 14));
+            $("#appetizer_list_tb #dy_created_appetizer").remove();
+            for(var i=0; i<result.length; i++){
+                var newtr = $('<tr id="dy_created_appetizer">').append(
+                    $('<td>').append(result[i].id),
+                    $('<td>').append(
+                        $('<input type="text" class="form-control" name=' + name_name + ' readonly>').val(result[i].name)),
+                    $('<td>').append(
+                        $('<img src="'+baseURL+'/images/'+ result[i].id + '" class="img-rounded" onclick="largephoto(this.id)" alt="Image" width="40" height="40" id=img_'+result[i].id+'>')
+                    ),
+                    $('<td>').append(
+                        $('<input type="text" class="form-control" name=' + price_name + ' readonly>').val(result[i].price)),
+                    $('<td>').append(
+                        $('<input type="text" class="form-control" name=' + calo_name + ' readonly>').val(result[i].calories)),
+                    $('<td>').append(
+                        $('<input type="text" class="form-control" name=' + pre_time_name + ' readonly>').val(result[i].prepTime)),
+                    $('<td>').append($('<a id='+result[i].id+' class="btn btn-large" onclick="menudelete(this.id)">Delete</a>'))
+                );
+                $("#appetizer_list_tb").append(newtr);
+            }
+
+
+        }});
 }
 
 function Refresh_sea_water_temperature_lst(){
@@ -261,11 +325,28 @@ function Refresh_turbidity_lst(){
                         $('<input type="text" class="form-control" name=' + PhysicalSensor_Location +
                         ' readonly>').val(psensorlst[i].location.location)),
                     $('<td>').append(
-                        $('<input type="text" class="form-control" name=' + PhysicalSensor_Status + ' readonly>').val(psensorlst[i].status)),
-                    $('<td>').append($('<div class="btn-group"><button id ='+psensorlst[i].psensorId+
-                    ' type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal" onclick="basicinfo(this.id)">Basic Info</button>' +
-                    '<input id ='+psensorlst[i].psensorId+ ' type="checkbox" onSwitchChange ="onswtichchange(event, state, this.id)" name="my-checkbox" checked></div>')),
-                    $('<input type="hidden" id=hlocation_'+psensorlst[i].psensorId+' value="Latitude: '+psensorlst[i].location.latitude +
+                        $('<input id =status_'+psensorlst[i].psensorId+ 'type="text" class="form-control" name=' + PhysicalSensor_Status + ' readonly>').val(psensorlst[i].status))
+                )
+
+                if(psensorlst[i].status=="Disabled")
+                {
+                    newtr.append(
+                        $('<td>').append($('<div class="btn-group"><button id ='+psensorlst[i].psensorId+
+                        ' type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal" onclick="basicinfo(this.id)">Basic Info</button>' +
+                        '<input id ='+psensorlst[i].psensorId+ ' type="checkbox" name="my-checkbox"></div>'))
+                    );
+                }
+                else
+                {
+                    newtr.append(
+                        $('<td>').append($('<div class="btn-group"><button id ='+psensorlst[i].psensorId+
+                        ' type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal" onclick="basicinfo(this.id)">Basic Info</button>' +
+                        '<input id ='+psensorlst[i].psensorId+ ' type="checkbox" name="my-checkbox" checked></div>'))
+                    );
+                }
+
+                    newtr.append(
+                        $('<input type="hidden" id=hlocation_'+psensorlst[i].psensorId+' value="Latitude: '+psensorlst[i].location.latitude +
                     ' Longitude: '+psensorlst[i].location.longitude+'">'),
                     $('<input type="hidden" id=hmade_'+psensorlst[i].psensorId+' value="'+psensorlst[i].made+'">'),
                     $('<input type="hidden" id=hmodel_'+psensorlst[i].psensorId+' value="'+psensorlst[i].model+'">'),
@@ -275,9 +356,20 @@ function Refresh_turbidity_lst(){
                     $('<input type="hidden" id=hpsensorId_'+psensorlst[i].psensorId+' value="'+psensorlst[i].psensorId+'">')
                 );
                 $("#turbidity_list_tb").append(newtr);
-                $("[name='my-checkbox']").bootstrapSwitch();
             }
+            $("[name='my-checkbox']").bootstrapSwitch();
+            $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
 
+               // alert(state);
+                if(state==true)
+                    psensorstatuschange(virtualsensorid, this.id, "Enabled", sensorType);
+                else
+                    psensorstatuschange(virtualsensorid, this.id, "Disabled", sensorType);
+
+                //console.log(this); // DOM element
+                //console.log(event); // jQuery event
+                //console.log(state); // true | false
+            });
 
         }});
 }
