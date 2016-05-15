@@ -7,6 +7,6 @@ public enum SensorStatus {
     UNKNOWN,
     DOWN,
     UP,
-    ENABLE,
-    DISABLE
+    Enabled,
+    Disabled
 }
