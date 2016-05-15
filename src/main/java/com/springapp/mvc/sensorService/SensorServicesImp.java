@@ -20,7 +20,6 @@ public class SensorServicesImp implements SensorServices{
 
     @Override
     public List<VsensorInfo> listAllVsensorInfo() {
-
         List<VsensorInfo> rst = new ArrayList<VsensorInfo>();
         Iterable<VsensorInfo> VsensorInfos = sensorRepo.findAll();
         for (VsensorInfo e : VsensorInfos) {
@@ -31,7 +30,6 @@ public class SensorServicesImp implements SensorServices{
 
     @Override
     public VsensorInfo findVsensorByType(String type) {
-
         VsensorInfo rst = sensorRepo.findBySensorType(type);
         return rst;
     }

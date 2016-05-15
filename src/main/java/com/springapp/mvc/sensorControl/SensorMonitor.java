@@ -63,12 +63,6 @@ public class SensorMonitor {
                 }
             }
         }
-//        System.out.println("sea water pressure total sensors: " + seaWaterPressureList.size());
-//        System.out.println("sea water temperature total sensors: " + seaWaterTemperatureList.size());
-//        System.out.println("sea water practical salinity total sensors: " + seaWaterPracticalSalinityList.size());
-//        System.out.println("mass oxygen total sensors: " + massConcOxygenList.size());
-//        System.out.println("sea water ph total sensors: " + seaWaterPhList.size());
-//        System.out.println("turbidity total sensors: " + turbidityList.size());
     }
 
     public List<Sensor> getAllSensors() {
@@ -79,6 +73,24 @@ public class SensorMonitor {
         sensorList.addAll(massConcOxygenList);
         sensorList.addAll(seaWaterPhList);
         sensorList.addAll(turbidityList);
+        return sensorList;
+    }
+
+    public List<Sensor> getSensors(SensorType sensorType) {
+        List<Sensor> sensorList = new ArrayList<Sensor>();
+        if (sensorType.equals(SensorType.sea_water_pressure)) {
+            sensorList.addAll(seaWaterPressureList);
+        } else if (sensorType.equals(SensorType.sea_water_temperature)) {
+            sensorList.addAll(seaWaterTemperatureList);
+        } else if (sensorType.equals(SensorType.sea_water_practical_salinity)) {
+            sensorList.addAll(seaWaterPracticalSalinityList);
+        } else if (sensorType.equals(SensorType.mass_concentration_of_oxygen_in_sea_water)) {
+            sensorList.addAll(massConcOxygenList);
+        } else if (sensorType.equals(SensorType.sea_water_ph_reported_on_total_scale)) {
+            sensorList.addAll(seaWaterPhList);
+        } else {
+            sensorList.addAll(turbidityList);
+        }
         return sensorList;
     }
 
@@ -99,30 +111,29 @@ public class SensorMonitor {
 
     private void monitorSensor(List<Sensor> sensorList) {
 
-        for(int i = 0; i < sensorList.size(); i++){
+        for (int i = 0; i < sensorList.size(); i++) {
             Future<String> res = rtvSensorD.rtvData(sensorList.get(i).getSensorType().toString(), sensorList.get(i).getSensorLocation().toString(), "_", "_");
             try {
-                while(!(res.isDone())){
+                while (!(res.isDone())) {
                     Thread.sleep(500);
                 }
-                if (!(res.get().equals("null")) && checkStatus(res.get())) {
-                    dataServices.saveData(sensorList.get(i).getSensorType(), sensorList.get(i).getSensorLocation(), res.get());
+                String json = res.get();
+                if (!(json.equals("null")) && checkDataValidity(json)) {
+                    dataServices.saveData(sensorList.get(i).getSensorType(), sensorList.get(i).getSensorLocation(), json);
                     sensorList.get(i).setSensorStatus(SensorStatus.UP);
                 } else {
                     sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
                 }
             } catch (InterruptedException e) {
-//                e.printStackTrace();
                 sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
             } catch (ExecutionException e) {
-//                e.printStackTrace();
                 sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
             }
             System.out.println(sensorList.get(i).toString());
         }
     }
 
-    private boolean checkStatus(String json) {
+    private boolean checkDataValidity(String json) {
         JSONObject result = new JSONObject(json);
         JSONObject table = result.getJSONObject("table");
         JSONArray rows = table.getJSONArray("rows");
