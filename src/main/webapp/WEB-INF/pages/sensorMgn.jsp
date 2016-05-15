@@ -132,8 +132,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="vs_div" id = "sea_water_pressure_vsensor_div">
-							</div>
+						</div>
+						<div class="vs_div" id = "sea_water_pressure_vsensor_div">
 						</div>
 					</div>
 					<div id="sea_water_temperature" class="tab-pane fade">
@@ -152,8 +152,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="vs_div" id = "sea_water_temperature_vsensor_div">
-							</div>
+						</div>
+						<div class="vs_div" id = "sea_water_temperature_vsensor_div">
 						</div>
 					</div>
 					<div id="sea_water_practical_salinity" class="tab-pane fade">
@@ -172,8 +172,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="vs_div" id = "sea_water_practical_salinity_vsensor_div">
-							</div>
+						</div>
+						<div class="vs_div" id = "sea_water_practical_salinity_vsensor_div">
 						</div>
 					</div>
 					<div id="mass_concentration_of_oxygen_in_sea_water" class="tab-pane fade">
@@ -192,8 +192,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="vs_div" id = "mass_concentration_of_oxygen_in_sea_water_vsensor_div">
-							</div>
+						</div>
+						<div class="vs_div" id = "mass_concentration_of_oxygen_in_sea_water_vsensor_div">
 						</div>
 					</div>
 					<div id="sea_water_ph_reported_on_total_scale" class="tab-pane fade">
@@ -212,8 +212,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="vs_div" id = "sea_water_ph_reported_on_total_scale_vsensor_div">
-							</div>
+						</div>
+						<div class="vs_div" id = "sea_water_ph_reported_on_total_scale_vsensor_div">
 						</div>
 					</div>
 					<div id="turbidity" class="tab-pane fade">
@@ -232,9 +232,8 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="vs_div" id = "turbidity_vsensor_div">
-							</div>
-
+						</div>
+						<div class="vs_div" id = "turbidity_vsensor_div">
 						</div>
 					</div>
 				</div>
