@@ -76,6 +76,24 @@ public class SensorMonitor {
         return sensorList;
     }
 
+    public List<Sensor> getSensors(SensorType sensorType) {
+        List<Sensor> sensorList = new ArrayList<Sensor>();
+        if (sensorType.equals(SensorType.sea_water_pressure)) {
+            sensorList.addAll(seaWaterPressureList);
+        } else if (sensorType.equals(SensorType.sea_water_temperature)) {
+            sensorList.addAll(seaWaterTemperatureList);
+        } else if (sensorType.equals(SensorType.sea_water_practical_salinity)) {
+            sensorList.addAll(seaWaterPracticalSalinityList);
+        } else if (sensorType.equals(SensorType.mass_concentration_of_oxygen_in_sea_water)) {
+            sensorList.addAll(massConcOxygenList);
+        } else if (sensorType.equals(SensorType.sea_water_ph_reported_on_total_scale)) {
+            sensorList.addAll(seaWaterPhList);
+        } else {
+            sensorList.addAll(turbidityList);
+        }
+        return sensorList;
+    }
+
     @Scheduled(fixedRate = 5000)
     public void monitorAllSensors() {
         monitorSensor(seaWaterPressureList);
@@ -93,10 +111,10 @@ public class SensorMonitor {
 
     private void monitorSensor(List<Sensor> sensorList) {
 
-        for(int i = 0; i < sensorList.size(); i++){
+        for (int i = 0; i < sensorList.size(); i++) {
             Future<String> res = rtvSensorD.rtvData(sensorList.get(i).getSensorType().toString(), sensorList.get(i).getSensorLocation().toString(), "_", "_");
             try {
-                while(!(res.isDone())){
+                while (!(res.isDone())) {
                     Thread.sleep(500);
                 }
                 String json = res.get();

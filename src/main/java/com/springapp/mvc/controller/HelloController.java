@@ -46,20 +46,23 @@ public class HelloController {
         return "sensorMgn";
     }
 
-    @RequestMapping(value = "/monitor", method = RequestMethod.GET)
-    public String monitor(ModelMap model) {
-        //monitor
-        List<Object> sensorList = new ArrayList<Object>();
-        for(int i = 0; i < sensorMonitor.getAllSensors().size(); i++){
-            Sensor sensor = sensorMonitor.getAllSensors().get(i);
-            Map<String, Object> sensorMap= new HashMap<String, Object>();
-            sensorMap.put("sensorLocation", sensor.getSensorLocation().toString());
-            sensorMap.put("sensorType", sensor.getSensorType().toString());
-            sensorMap.put("sensorStatus", sensor.getSensorStatus());
-            sensorList.add((HashMap)sensorMap);
+    @RequestMapping(value = "/monitor/{type}", method = RequestMethod.GET)
+    @ResponseBody
+    public VsensorInfo monitor(@PathVariable("type") String type) {
+        List<Sensor> sensorList = sensorMonitor.getSensors(SensorType.valueOf(type));
+        VsensorInfo vsensorInfo = sensorservices.findVsensorByType(type);
+        vsensorInfo.setStatus("");
+        for(int i = 0; i < vsensorInfo.getPsensorList().size(); i++){
+            PsensorInfo psensorInfo = vsensorInfo.getPsensorList().get(i);
+            for(Sensor sensor: sensorList) {
+                if(sensor.getSensorLocation().equals(SensorLocation.valueOf(psensorInfo.getLocation().getLocation()))) {
+                    psensorInfo.setStatus(sensor.getSensorStatus().toString());
+                    break;
+                }
+            }
+            vsensorInfo.getPsensorList().set(i, psensorInfo);
         }
-        model.addAttribute("sensorList", sensorList);
-        return "monitor";
+        return vsensorInfo;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
