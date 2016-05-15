@@ -37,7 +37,7 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<style>
-		#map {
+		#mapCanvas {
 			width: 880px;
 			height: 300px;
 		}
@@ -87,18 +87,8 @@
 			<h1 class="page-header">Dashboard</h1>
 
 			<div class="row placeholders">
-				<div id="map"></div>
-				<script>
-					function initMap() {
-						var mapDiv = document.getElementById('map');
-						var map = new google.maps.Map(mapDiv, {
-							center: {lat: 44.540, lng: -78.546},
-							zoom: 8
-						});
-					}
-				</script>
-				<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-						async defer></script>
+				<div id="mapCanvas"></div>
+
 			</div>
 
 			<h2 class="sub-header">Sensor List</h2>
@@ -292,6 +282,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt7zPf-f9wKwi4vIXvVCmunQ8AeiSG_sY"
+		type="text/javascript" async defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script type="text/javascript" src="/resources/js/jquery.min.js"><\/script>')</script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
