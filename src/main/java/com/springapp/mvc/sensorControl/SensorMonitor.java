@@ -5,7 +5,10 @@ import com.springapp.mvc.sensorService.RtvSensorD;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.ArrayList;
@@ -19,7 +22,9 @@ import static com.springapp.mvc.sensorControl.SensorType.sea_water_pressure;
 /**
  * Created by cheyikung on 5/13/16.
  */
+@Configuration
 @EnableAsync
+@EnableScheduling
 public class SensorMonitor {
 
     @Autowired
@@ -109,6 +114,7 @@ public class SensorMonitor {
         monitorSensor(turbidityList);
     }
 
+    @Async
     private void monitorSensor(List<Sensor> sensorList) {
 
         for (int i = 0; i < sensorList.size(); i++) {
@@ -129,7 +135,7 @@ public class SensorMonitor {
             } catch (ExecutionException e) {
                 sensorList.get(i).setSensorStatus(SensorStatus.DOWN);
             }
-            System.out.println(sensorList.get(i).toString());
+//            System.out.println(sensorList.get(i).toString());
         }
     }
 

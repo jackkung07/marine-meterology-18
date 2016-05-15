@@ -247,6 +247,11 @@
 <script>
   $(document).ready(function(){
 //alert("dd");
+    Refresh_sea_water_pressure_lst();
+    Refresh_sea_water_temperature_lst();
+    Refresh_sea_water_practical_salinity_lst();
+    Refresh_mass_concentration_of_oxygen_in_sea_water_lst();
+    Refresh_sea_water_ph_reported_on_total_scale_lst();
     Refresh_turbidity_lst();
   });
 </script>
