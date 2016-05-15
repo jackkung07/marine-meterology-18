@@ -5,6 +5,7 @@
   <!-- add tag spring:url -->
   <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapMinCss"/>
   <spring:url value="/resources/css/dashboard.css" var="dashboardCss"/>
+
   <!-- finish adding spring:url tag -->
 
   <meta charset="utf-8">
@@ -14,6 +15,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/resources/css/monitor.css">
+  <link href="/resources/css/bootstrap-switch.css" rel="stylesheet">
 
   <title>Dashboard</title>
 
@@ -43,171 +46,190 @@
 
 <body>
 
-<c:forEach var="sensor" items="${sensorList}">
-  <td>${sensor.sensorLocation}</td>
-  <td>${sensor.sensorType}</td>
-  <td>${sensor.sensorStatus}</td>
-</c:forEach>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Sensor Cloud</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="search">search</a></li>
+        <li><a href="monitor">monitor</a></li>
+        <li><a href="sensorMgn">Management</a></li>
+        <li><a href="#">Export</a></li>
+      </ul>
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Search...">
+      </form>
+    </div>
+  </div>
+</nav>
 
-<%--<nav class="navbar navbar-inverse navbar-fixed-top">--%>
-  <%--<div class="container-fluid">--%>
-    <%--<div class="navbar-header">--%>
-      <%--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">--%>
-        <%--<span class="sr-only">Toggle navigation</span>--%>
-        <%--<span class="icon-bar"></span>--%>
-        <%--<span class="icon-bar"></span>--%>
-        <%--<span class="icon-bar"></span>--%>
-      <%--</button>--%>
-      <%--<a class="navbar-brand" href="#">Sensor Cloud</a>--%>
-    <%--</div>--%>
-    <%--<div id="navbar" class="navbar-collapse collapse">--%>
-      <%--<ul class="nav navbar-nav navbar-right">--%>
-        <%--<li><a href="/">Home</a></li>--%>
-        <%--<li><a href="#">Sensor Settings</a></li>--%>
-        <%--<li><a href="login">Login</a></li>--%>
-        <%--<li><a href="#">Help</a></li>--%>
-      <%--</ul>--%>
-      <%--<form class="navbar-form navbar-right">--%>
-        <%--<input type="text" class="form-control" placeholder="Search...">--%>
-      <%--</form>--%>
-    <%--</div>--%>
-  <%--</div>--%>
-<%--</nav>--%>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="/">Home</a></li>
+        <li><a href="search">search</a></li>
+        <li><a href="monitor">monitor<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="sensorMgn">Management</a></li>
+        <li><a href="#">Export</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">Dashboard</h1>
 
-<%--<div class="container-fluid">--%>
-  <%--<div class="row">--%>
-    <%--<div class="col-sm-3 col-md-2 sidebar">--%>
-      <%--<ul class="nav nav-sidebar">--%>
-        <%--<li><a href="/">Home</a></li>--%>
-        <%--<!--li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li-->--%>
-        <%--<li><a href="search">Search</a></li>--%>
-        <%--<li class="active"><a href="#">Status <span class="sr-only">(current)</span></a></li>--%>
-        <%--<li><a href="#">Analytics</a></li>--%>
-        <%--<li><a href="#">Export</a></li>--%>
-      <%--</ul>--%>
-      <%--<!-- <ul class="nav nav-sidebar">--%>
-        <%--<li><a href="">Nav item</a></li>--%>
-        <%--<li><a href="">Nav item again</a></li>--%>
-        <%--<li><a href="">One more nav</a></li>--%>
-        <%--<li><a href="">Another nav item</a></li>--%>
-        <%--<li><a href="">More navigation</a></li>--%>
-      <%--</ul> -->--%>
-      <%--<!-- <ul class="nav nav-sidebar">--%>
-        <%--<li><a href="">Nav item again</a></li>--%>
-        <%--<li><a href="">One more nav</a></li>--%>
-        <%--<li><a href="">Another nav item</a></li>--%>
-      <%--</ul> -->--%>
-    <%--</div>--%>
-    <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">--%>
-      <%--<h1 class="page-header">Dashboard</h1>--%>
+      <div class="row placeholders">
+        <div id="map"></div>
+        <script>
+          function initMap() {
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+              center: {lat: 44.540, lng: -78.546},
+              zoom: 8
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+                async defer></script>
+      </div>
 
-      <%--<div class="row placeholders">--%>
-        <%--<div id="map"></div>--%>
-        <%--<script>--%>
-          <%--var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';--%>
-          <%--var labelIndex = 0;--%>
-          <%--var myLocation = [{lat: 45.0, lng: 165.0},--%>
-            <%--{lat: 45.0, lng: 165.0125},--%>
-            <%--{lat: 45.0, lng: 165.025},--%>
-            <%--{lat: 45.0, lng: 165.0375},--%>
-            <%--{lat: 45.0, lng: 165.05}]--%>
-          <%--function initMap() {--%>
-            <%--var mapDiv = document.getElementById('map');--%>
-            <%--var map = new google.maps.Map(mapDiv, {--%>
-              <%--zoom: 13,--%>
-              <%--center: myLocation[0]--%>
-            <%--});--%>
-            <%--for(i = 0; i < myLocation.length; i++) {--%>
-              <%--addMarker(myLocation[i], map);--%>
-            <%--}--%>
-          <%--}--%>
-          <%--// add marker--%>
-          <%--function addMarker(location, map) {--%>
-            <%--// Add the marker at the clicked location, and add the next-available label--%>
-            <%--// from the array of alphabetical characters.--%>
-            <%--var marker = new google.maps.Marker({--%>
-              <%--position: location,--%>
-              <%--label: labels[labelIndex++ % labels.length],--%>
-              <%--map: map--%>
-            <%--});--%>
-          <%--}--%>
-
-        <%--</script>--%>
-        <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChcIlGDaQ7WxkjDz9_CsFN9emDUd6Hj0s&callback=initMap"--%>
-                <%--async defer></script>--%>
-        <%--<!-- <div class="col-xs-6 col-sm-3 placeholder">--%>
-          <%--<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">--%>
-          <%--<h4>Map</h4>--%>
-          <%--<span class="text-muted">Something else</span>--%>
-        <%--</div> -->--%>
-      <%--</div>--%>
+      <h2 class="sub-header">Sensor List</h2>
 
 
-      <%--<h2 class="sub-header">Sensor Status</h2>--%>
-      <%--<div class="table-responsive">--%>
-        <%--<table class="table table-striped">--%>
-          <%--<thead>--%>
-          <%--<tr>--%>
-            <%--<th>Sensor Name</th>--%>
-            <%--<th>Sensor Type</th>--%>
-            <%--<th>Latitude</th>--%>
-            <%--<th>Longitude</th>--%>
-            <%--<th>Status</th>--%>
-          <%--</tr>--%>
-          <%--</thead>--%>
-          <%--<c:forEach var="sensor" items="${sensorList}">--%>
-          <%--<tbody>--%>
-          <%--<tr>--%>
-            <%--<td>${sensor.sensorLocation}</td>--%>
-            <%--<td>${sensor.sensorType}</td>--%>
-            <%--<td>45.0</td>--%>
-            <%--<td>165.0</td>--%>
-            <%--<td>${sensor.sensorStatus}</td>--%>
-          <%--</tr>--%>
-          <%--</tbody>--%>
-          <%--</c:forEach>--%>
-          <%--</table>--%>
-        <%--</div>--%>
+      <div class="container">
 
-      <%--</div>--%>
-    <%--</div>--%>
-  <%--</div>--%>
+        <ul class="nav nav-tabs ">
+          <li class="active"><a data-toggle="tab" href="#sea_water_pressure">WaterPressure</a></li>
+          <li><a data-toggle="tab" href="#sea_water_temperature">WaterTemperature</a></li>
+          <li><a data-toggle="tab" href="#sea_water_practical_salinity">WaterSalinity</a></li>
+          <li><a data-toggle="tab" href="#mass_concentration_of_oxygen_in_sea_water">OxygenInWater</a></li>
+          <li><a data-toggle="tab" href="#sea_water_ph_reported_on_total_scale">WaterPH</a></li>
+          <li><a data-toggle="tab" href="#turbidity">Turbidity</a></li>
+        </ul>
 
+        <div class="tab-content">
+          <div id="sea_water_pressure" class="tab-pane fade in active">
+            <div class="table_div">
+              <div class="table-responsive">
+                <table class="table table-hover" id="sea_water_pressure_list">
+                  <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody id="sea_water_pressure_list_tb">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="sea_water_temperature" class="tab-pane fade">
+            <div class="table_div">
+              <div class="table-responsive">
+                <table class="table table-hover" id="sea_water_temperature_list">
+                  <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody id="sea_water_temperature_list_tb">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="sea_water_practical_salinity" class="tab-pane fade">
+            <div class="table_div">
+              <div class="table-responsive">
+                <table class="table table-hover" id="sea_water_practical_salinity_list">
+                  <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody id="sea_water_practical_salinity_list_tb">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="mass_concentration_of_oxygen_in_sea_water" class="tab-pane fade">
+            <div class="table_div">
+              <div class="table-responsive">
+                <table class="table table-hover" id="mass_concentration_of_oxygen_in_sea_water_list">
+                  <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody id="mass_concentration_of_oxygen_in_sea_water_list_tb">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="sea_water_ph_reported_on_total_scale" class="tab-pane fade">
+            <div class="table_div">
+              <div class="table-responsive">
+                <table class="table table-hover" id="sea_water_ph_reported_on_total_scale_list">
+                  <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody id="sea_water_ph_reported_on_total_scale_list_tb">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="turbidity" class="tab-pane fade">
+            <div class="table_div">
+              <div class="table-responsive">
+                <table class="table table-hover" id="turbidity_list">
+                  <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody id="turbidity_list_tb">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-          <%--<tr>--%>
-            <%--<td>POES AVHRR</td>--%>
-            <%--<td>Temperature</td>--%>
-            <%--<td>45.0</td>--%>
-            <%--<td>165.0125</td>--%>
-            <%--<td>on</td>--%>
-          <%--</tr>--%>
-          <%--<tr>--%>
-            <%--<td>POES AVHRR</td>--%>
-            <%--<td>Temperature</td>--%>
-            <%--<td>45.0</td>--%>
-            <%--<td>165.025</td>--%>
-            <%--<td>off</td>--%>
-          <%--</tr>--%>
-          <%--<tr>--%>
-            <%--<td>POES AVHRR</td>--%>
-            <%--<td>Temperature</td>--%>
-            <%--<td>45.0</td>--%>
-            <%--<td>165.0375</td>--%>
-            <%--<td>off</td>--%>
-          <%--</tr>--%>
-          <%--<tr>--%>
-            <%--<td>POES AVHRR</td>--%>
-            <%--<td>Temperature</td>--%>
-            <%--<td>45.0</td>--%>
-            <%--<td>165.05</td>--%>
-            <%--<td>on</td>--%>
-          <%--</tr>--%>
-          <%--</tbody>--%>
-        <%--</table>--%>
-      <%--</div>--%>
-    <%--</div>--%>
-  <%--</div>--%>
-<%--</div>--%>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -215,9 +237,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script type="text/javascript" src="/resources/js/jquery.min.js"><\/script>')</script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/monitor.js"></script>
+<script src="/resources/js/bootstrap-switch.js"></script>
+<%--<script type="text/javascript" src="/resources/js/sensor_configure.js"></script>--%>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <!-- <script src="../../assets/js/vendor/holder.min.js"></script> -->
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<script>
+  $(document).ready(function(){
+//alert("dd");
+    Refresh_turbidity_lst();
+  });
+</script>
 </body>
 </html>

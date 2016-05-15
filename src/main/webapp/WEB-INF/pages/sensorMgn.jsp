@@ -61,7 +61,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
 				<li><a href="search">search</a></li>
-				<li><a href="monitor">Status</a></li>
+				<li><a href="monitor">monitor</a></li>
 				<li><a href="sensorMgn">Management</a></li>
 				<li><a href="#">Export</a></li>
 			</ul>
@@ -78,7 +78,7 @@
 			<ul class="nav nav-sidebar">
 				<li><a href="/">Home</a></li>
 				<li><a href="search">search</a></li>
-				<li><a href="monitor">Status</a></li>
+				<li><a href="monitor">monitor</a></li>
 				<li class="active"><a href="sensorMgn">Management<span class="sr-only">(current)</span></a></li>
 				<li><a href="#">Export</a></li>
 			</ul>
@@ -214,7 +214,7 @@
 									<tr>
 										<th>PhysicalSensorId</th>
 										<th>PhysicalSensor Location</th>
-										<th>Status</th>
+										<th>Disabled/Enabled</th>
 										<th>Function</th>
 									</tr>
 									</thead>

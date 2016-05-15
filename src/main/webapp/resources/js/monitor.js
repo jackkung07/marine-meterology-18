@@ -2,6 +2,7 @@
  * Created by ivanybma on 5/14/16.
  */
 
+
 function basicinfo(id){
 
         $('#basic_location').html($('#hlocation_'+id).val());
@@ -255,9 +256,12 @@ function Refresh_turbidity_lst(){
     var PhysicalSensorId="PhysicalSensorId";
     var PhysicalSensor_Location="PhysicalSensor_Location";
     var PhysicalSensor_Status = "PhysicalSensor_Status";
+    var PhysicalSensor_latitude = "PhysicalSensor_latitude";
+    var PhysicalSensor_longitude = "PhysicalSensor_longitude";
+
 
     var category = "turbidity";
-    $.ajax({url: "/rtvSensorLst/"+category,
+    $.ajax({url: "/monitor/"+category,
         type: "GET",
         DataType: "json",
         error: function(xhr){
@@ -273,62 +277,22 @@ function Refresh_turbidity_lst(){
             var status = result.status;
             var psensorlst = result.psensorList;
 
-            //alert(psensorlst);
-            //alert(result.psensorList[0].model);
-            //alert(result.psensorList[0].psensorId);
             for(var i=0; i<psensorlst.length; i++){
                 var newtr = $('<tr id="dy_created_turbidity">').append(
-                    $('<td>').append(
-                        $('<input type="text" class="form-control" name=' + PhysicalSensorId + ' readonly>').val(psensorlst[i].psensorId)),
                     $('<td>').append(
                         $('<input type="text" class="form-control" name=' + PhysicalSensor_Location +
                         ' readonly>').val(psensorlst[i].location.location)),
                     $('<td>').append(
-                        $('<input id =status_'+psensorlst[i].psensorId+ 'type="text" class="form-control" name=' + PhysicalSensor_Status + ' readonly>').val(psensorlst[i].status))
+                        $('<input id =latitude_'+psensorlst[i].psensorId+ 'type="text" class="form-control" name=' + PhysicalSensor_latitude + ' readonly>').val(psensorlst[i].location.latitude)),
+                    $('<td>').append(
+                        $('<input id =longitude_'+psensorlst[i].psensorId+ 'type="text" class="form-control" name=' + PhysicalSensor_longitude + ' readonly>').val(psensorlst[i].location.longitude)),
+                    $('<td>').append(
+                        $('<a>*<span class="badge">'+psensorlst[i].status+'</span></a>')
+                    )
                 )
 
-                if(psensorlst[i].status=="Disabled")
-                {
-                    newtr.append(
-                        $('<td>').append($('<div class="btn-group"><button id ='+psensorlst[i].psensorId+
-                        ' type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal" onclick="basicinfo(this.id)">Basic Info</button>' +
-                        '<input id ='+psensorlst[i].psensorId+ ' type="checkbox" name="my-checkbox"></div>'))
-                    );
-                }
-                else
-                {
-                    newtr.append(
-                        $('<td>').append($('<div class="btn-group"><button id ='+psensorlst[i].psensorId+
-                        ' type="button" class="btn btn-primary" data-toggle="modal" data-target="#BasicModal" onclick="basicinfo(this.id)">Basic Info</button>' +
-                        '<input id ='+psensorlst[i].psensorId+ ' type="checkbox" name="my-checkbox" checked></div>'))
-                    );
-                }
-
-                    newtr.append(
-                        $('<input type="hidden" id=hlocation_'+psensorlst[i].psensorId+' value="Latitude: '+psensorlst[i].location.latitude +
-                    ' Longitude: '+psensorlst[i].location.longitude+'">'),
-                    $('<input type="hidden" id=hmade_'+psensorlst[i].psensorId+' value="'+psensorlst[i].made+'">'),
-                    $('<input type="hidden" id=hmodel_'+psensorlst[i].psensorId+' value="'+psensorlst[i].model+'">'),
-                    $('<input type="hidden" id=hseriesnumber_'+psensorlst[i].psensorId+' value="'+psensorlst[i].seriesnumber+'">'),
-                    $('<input type="hidden" id=hSensorType_'+psensorlst[i].psensorId+' value="'+psensorlst[i].sensorType+'">'),
-                    $('<input type="hidden" id=hStatus_'+psensorlst[i].psensorId+' value="'+psensorlst[i].status+'">'),
-                    $('<input type="hidden" id=hpsensorId_'+psensorlst[i].psensorId+' value="'+psensorlst[i].psensorId+'">')
-                );
                 $("#turbidity_list_tb").append(newtr);
             }
-            $("[name='my-checkbox']").bootstrapSwitch();
-            $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-
-               // alert(state);
-                if(state==true)
-                    psensorstatuschange(virtualsensorid, this.id, "Enabled", sensorType);
-                else
-                    psensorstatuschange(virtualsensorid, this.id, "Disabled", sensorType);
-
-                //console.log(this); // DOM element
-                //console.log(event); // jQuery event
-                //console.log(state); // true | false
-            });
 
         }});
 }
