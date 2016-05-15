@@ -63,8 +63,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Home</a></li>
-                <li><a href="sensorMaintenance">Sensor Settings</a></li>
+                <li><a href="#">Home</a></li>
+                <%--<li><a href="sensorMaintenance">Sensor Settings</a></li>--%>
                 <li><a href="login">Login</a></li>
                 <li><a href="#">Help</a></li>
             </ul>
@@ -83,99 +83,26 @@
                 <li class="active"><a href="search">Search<span class="sr-only">(current)</span></a></li>
                 <li><a href="monitor">Monitor</a></li>
                 <li><a href="sensorMgn">Management</a></li>
-                <li><a href="#">Export</a></li>
+                <%--<li><a href="#">Export</a></li>--%>
             </ul>
-            <!-- <ul class="nav nav-sidebar">
-              <li><a href="">Nav item</a></li>
-              <li><a href="">Nav item again</a></li>
-              <li><a href="">One more nav</a></li>
-              <li><a href="">Another nav item</a></li>
-              <li><a href="">More navigation</a></li>
-            </ul> -->
-            <!-- <ul class="nav nav-sidebar">
-              <li><a href="">Nav item again</a></li>
-              <li><a href="">One more nav</a></li>
-              <li><a href="">Another nav item</a></li>
-            </ul> -->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Sensor Monitor Status Request</h1>
-            <div class="row placeholders">
-                <div id="sensorMonitorRequest">
-                    <form method="get" action="monitor">
-                        <table class="table table-striped">
-                            <tr>
-                                <td align="right">Sensor ID</td>
-                                <td align="left">
-                                    <input type="text" name="sensorID">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">Sensor Name</td>
-                                <td align="left">
-                                    <input type="text" name="sensorName">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">Sensor Type</td>
-                                <td align="left">
-                                    <select>
-                                        <option value="Temperature">Temperature</option>
-                                        <option value="WindSpeed">Wind Speed</option>
-                                        <option value="Wave">Wave</option>
-                                        <option value="Salinity">Salinity</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td align="left">
-                                    <input type="submit" value="Submit">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-
             <h1 class="page-header">Sensor Data Request</h1>
             <div class="row placeholders">
                 <div id="sensorDataRequest">
                     <form method="get" action="sensormgn">
                         <table class="table table-striped">
                             <tr>
-                                <td align="right">Sensor ID</td>
-                                <td align="left">
-                                    <input type="text" name="sensorID">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">Sensor Name</td>
-                                <td align="left">
-                                    <input type="text" name="sensorName">
-                                </td>
-                            </tr>
-                            <tr>
                                 <td align="right">Sensor Type</td>
                                 <td align="left">
                                     <select>
-                                        <option value="Temperature">Temperature</option>
-                                        <option value="WindSpeed">Wind Speed</option>
-                                        <option value="Wave">Wave</option>
-                                        <option value="Salinity">Salinity</option>
+                                        <option value="sea_water_pressure">Water Pressure</option>
+                                        <option value="sea_water_temperature">Water Temperature</option>
+                                        <option value="sea_water_practical_salinity">Water Salinity</option>
+                                        <option value="mass_concentration_of_oxygen_in_sea_water">Water Oxygen</option>
+                                        <option value="sea_water_ph_reported_on_total_scale">Water PH</option>
+                                        <option value="turbidity">Water Turbidity</option>
                                     </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">Latitude</td>
-                                <td align="left">
-                                    <input type="text" name="latitude">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">Longitude</td>
-                                <td align="left">
-                                    <input type="text" name="longitude">
                                 </td>
                             </tr>
                             <tr>

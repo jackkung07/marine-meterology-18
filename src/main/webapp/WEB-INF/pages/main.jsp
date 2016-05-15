@@ -57,7 +57,7 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Home</a></li>
-				<li><a href="sensorMaintenance">Sensor Settings</a></li>
+				<%--<li><a href="sensorMaintenance">Sensor Settings</a></li>--%>
 				<li><a href="login">Login</a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
@@ -76,7 +76,7 @@
 				<li><a href="search">Search</a></li>
 				<li><a href="monitor">Monitor</a></li>
 				<li><a href="sensorMgn">Management</a></li>
-				<li><a href="#">Export</a></li>
+				<%--<li><a href="#">Export</a></li>--%>
 			</ul>
 			<!-- <ul class="nav nav-sidebar">
               <li><a href="">Nav item</a></li>
@@ -114,64 +114,64 @@
                 </div> -->
 			</div>
 
-			<h2 class="sub-header">Sensor List</h2>
-			<div class="table-responsive">
-				<table class="table table-striped">
-					<thead>
-					<tr>
-						<th>Sensor Name</th>
-						<th>Sensor Type</th>
-						<th>Location</th>
-						<th>Status</th>
-						<th>Edit</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td>1,001</td>
-						<td>Lorem</td>
-						<td>ipsum</td>
-						<td>dolor</td>
-						<td>sit</td>
-					</tr>
-					<tr>
-						<td>1,002</td>
-						<td>amet</td>
-						<td>consectetur</td>
-						<td>adipiscing</td>
-						<td>elit</td>
-					</tr>
-					<tr>
-						<td>1,003</td>
-						<td>Integer</td>
-						<td>nec</td>
-						<td>odio</td>
-						<td>Praesent</td>
-					</tr>
-					<tr>
-						<td>1,003</td>
-						<td>libero</td>
-						<td>Sed</td>
-						<td>cursus</td>
-						<td>ante</td>
-					</tr>
-					<tr>
-						<td>1,004</td>
-						<td>dapibus</td>
-						<td>diam</td>
-						<td>Sed</td>
-						<td>nisi</td>
-					</tr>
-					<tr>
-						<td>1,005</td>
-						<td>Nulla</td>
-						<td>quis</td>
-						<td>sem</td>
-						<td>at</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
+			<%--<h2 class="sub-header">Sensor List</h2>--%>
+			<%--<div class="table-responsive">--%>
+				<%--<table class="table table-striped">--%>
+					<%--<thead>--%>
+					<%--<tr>--%>
+						<%--<th>Sensor Name</th>--%>
+						<%--<th>Sensor Type</th>--%>
+						<%--<th>Location</th>--%>
+						<%--<th>Status</th>--%>
+						<%--<th>Edit</th>--%>
+					<%--</tr>--%>
+					<%--</thead>--%>
+					<%--<tbody>--%>
+					<%--<tr>--%>
+						<%--<td>1,001</td>--%>
+						<%--<td>Lorem</td>--%>
+						<%--<td>ipsum</td>--%>
+						<%--<td>dolor</td>--%>
+						<%--<td>sit</td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>1,002</td>--%>
+						<%--<td>amet</td>--%>
+						<%--<td>consectetur</td>--%>
+						<%--<td>adipiscing</td>--%>
+						<%--<td>elit</td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>1,003</td>--%>
+						<%--<td>Integer</td>--%>
+						<%--<td>nec</td>--%>
+						<%--<td>odio</td>--%>
+						<%--<td>Praesent</td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>1,003</td>--%>
+						<%--<td>libero</td>--%>
+						<%--<td>Sed</td>--%>
+						<%--<td>cursus</td>--%>
+						<%--<td>ante</td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>1,004</td>--%>
+						<%--<td>dapibus</td>--%>
+						<%--<td>diam</td>--%>
+						<%--<td>Sed</td>--%>
+						<%--<td>nisi</td>--%>
+					<%--</tr>--%>
+					<%--<tr>--%>
+						<%--<td>1,005</td>--%>
+						<%--<td>Nulla</td>--%>
+						<%--<td>quis</td>--%>
+						<%--<td>sem</td>--%>
+						<%--<td>at</td>--%>
+					<%--</tr>--%>
+					<%--</tbody>--%>
+				<%--</table>--%>
+			<%--</div>--%>
 		</div>
 	</div>
 </div>

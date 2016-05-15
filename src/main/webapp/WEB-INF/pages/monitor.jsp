@@ -61,11 +61,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="search">Search</a></li>
-                <li><a href="monitor">Monitor</a></li>
-                <li><a href="sensorMgn">Management</a></li>
-                <li><a href="#">Export</a></li>
+                <li><a href="#">Home</a></li>
+                <%--<li><a href="sensorMaintenance">Sensor Settings</a></li>--%>
+                <li><a href="login">Login</a></li>
+                <li><a href="#">Help</a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
@@ -82,7 +81,7 @@
                 <li><a href="search">Search</a></li>
                 <li class="active"><a href="monitor">Monitor<span class="sr-only">(current)</span></a></li>
                 <li><a href="sensorMgn">Management</a></li>
-                <li><a href="#">Export</a></li>
+                <%--<li><a href="#">Export</a></li>--%>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
