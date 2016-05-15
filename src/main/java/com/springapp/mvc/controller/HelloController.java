@@ -5,6 +5,7 @@ import com.springapp.mvc.sensorEntity.Location;
 import com.springapp.mvc.sensorEntity.PsensorInfo;
 import com.springapp.mvc.sensorEntity.SDataEntity;
 import com.springapp.mvc.sensorEntity.VsensorInfo;
+import com.springapp.mvc.sensorService.DataServices;
 import com.springapp.mvc.sensorService.RtvSensorD;
 import com.springapp.mvc.sensorService.SensorServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,11 @@ public class HelloController {
     @Autowired
     SensorMonitor sensorMonitor;
 
+    @Autowired
+    DataServices dataServices;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainPage(ModelMap model) {
-        //model.addAttribute("message", "Hello world!");
         return "main";
     }
 
@@ -95,9 +98,9 @@ public class HelloController {
 
     @RequestMapping(value = "/appRqstHandler/{type}/{location}/{strdate}/{enddate}", method = RequestMethod.GET)
     @ResponseBody
-    public SDataEntity appRqstHandler(@PathVariable("type") String type, @PathVariable("location") String location,
+    public List<SDataEntity> appRqstHandler(@PathVariable("type") String type, @PathVariable("location") String location,
                                       @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
-        return null;
+        return dataServices.findDataList(SensorType.valueOf(type), SensorLocation.valueOf(location), strdate, enddate);
 
     }
 
@@ -160,9 +163,5 @@ public class HelloController {
             sensorservices.createVsensor(vitem);
             //System.out.println(entry.getValue().get(i));
         }
-
-
     }
-
-
 }
