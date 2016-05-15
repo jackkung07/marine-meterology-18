@@ -36,8 +36,8 @@
     <context:component-scan base-package="com.springapp.mvc.sensorControl"/>
 
     <task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
-    <task:executor id="myExecutor" pool-size="5"/>
-    <task:scheduler id="myScheduler" pool-size="10"/>
+    <task:executor id="myExecutor" pool-size="50"/>
+    <task:scheduler id="myScheduler" pool-size="50"/>
     <bean id="SensorMonitor" class="com.springapp.mvc.sensorControl.SensorMonitor" />
     <bean id="TrbSensorD" class="com.springapp.mvc.sensorService.RtvSensorD" />
 
