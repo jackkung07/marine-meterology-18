@@ -104,7 +104,7 @@
                            id="sea_water_practical">WaterSalinity</a></li>
                     <li><a data-toggle="tab" href="#mass_concentration_of_oxygen_in_sea_water" id="mass_concentration">OxygenInWater</a>
                     </li>
-                    <li><a data-toggle="tab" href="#sea_water_ph_reported_on_total_scale" id="sea_water_ph_">WaterPH</a>
+                    <li><a data-toggle="tab" href="#sea_water_ph_reported_on_total_scale" id="sea_water_ph">WaterPH</a>
                     </li>
                     <li><a data-toggle="tab" href="#turbidity" id="turb">Turbidity</a></li>
                 </ul>
@@ -262,7 +262,7 @@
     $('#mass_concentration').click(function () {
         Refresh_mass_concentration_of_oxygen_in_sea_water_lst(true);
     });
-    $('#sea_water_ph_').click(function () {
+    $('#sea_water_ph').click(function () {
         Refresh_sea_water_ph_reported_on_total_scale_lst(true);
     });
     $('#turb').click(function () {

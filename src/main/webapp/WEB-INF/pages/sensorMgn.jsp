@@ -96,12 +96,16 @@
 			<div class="container">
 
 				<ul class="nav nav-tabs ">
-					<li class="active"><a data-toggle="tab" href="#sea_water_pressure">WaterPressure</a></li>
-					<li><a data-toggle="tab" href="#sea_water_temperature">WaterTemperature</a></li>
-					<li><a data-toggle="tab" href="#sea_water_practical_salinity">WaterSalinity</a></li>
-					<li><a data-toggle="tab" href="#mass_concentration_of_oxygen_in_sea_water">OxygenInWater</a></li>
-					<li><a data-toggle="tab" href="#sea_water_ph_reported_on_total_scale">WaterPH</a></li>
-					<li><a data-toggle="tab" href="#turbidity">Turbidity</a></li>
+					<li class="active"><a data-toggle="tab" href="#sea_water_pressure" id="sea_water">WaterPressure</a>
+					</li>
+					<li><a data-toggle="tab" href="#sea_water_temperature" id="sea_water_temp">WaterTemperature</a></li>
+					<li><a data-toggle="tab" href="#sea_water_practical_salinity"
+						   id="sea_water_practical">WaterSalinity</a></li>
+					<li><a data-toggle="tab" href="#mass_concentration_of_oxygen_in_sea_water" id="mass_concentration">OxygenInWater</a>
+					</li>
+					<li><a data-toggle="tab" href="#sea_water_ph_reported_on_total_scale" id="sea_water_ph">WaterPH</a>
+					</li>
+					<li><a data-toggle="tab" href="#turbidity" id="turb">Turbidity</a></li>
 				</ul>
 
 				<div class="tab-content">
@@ -111,9 +115,9 @@
 								<table class="table table-hover" id="sea_water_pressure_list">
 									<thead>
 									<tr>
-										<th>VirtualSensorId</th>
-										<th>PhysicalSensorId</th>
-										<th>PhysicalSensor Location</th>
+										<th>Virtual SensorId</th>
+										<th>Virtual Sensor Location</th>
+										<th>Enable/Disable</th>
 										<th>Function</th>
 									</tr>
 									</thead>
@@ -131,9 +135,9 @@
 								<table class="table table-hover" id="sea_water_temperature_list">
 									<thead>
 									<tr>
-										<th>VirtualSensorId</th>
-										<th>PhysicalSensorId</th>
-										<th>PhysicalSensor Location</th>
+										<th>Virtual SensorId</th>
+										<th>Virtual Sensor Location</th>
+										<th>Enable/Disable</th>
 										<th>Function</th>
 									</tr>
 									</thead>
@@ -151,9 +155,9 @@
 								<table class="table table-hover" id="sea_water_practical_salinity_list">
 									<thead>
 									<tr>
-										<th>VirtualSensorId</th>
-										<th>PhysicalSensorId</th>
-										<th>PhysicalSensor Location</th>
+										<th>Virtual SensorId</th>
+										<th>Virtual Sensor Location</th>
+										<th>Enable/Disable</th>
 										<th>Function</th>
 									</tr>
 									</thead>
@@ -171,9 +175,9 @@
 								<table class="table table-hover" id="mass_concentration_of_oxygen_in_sea_water_list">
 									<thead>
 									<tr>
-										<th>VirtualSensorId</th>
-										<th>PhysicalSensorId</th>
-										<th>PhysicalSensor Location</th>
+										<th>Virtual SensorId</th>
+										<th>Virtual Sensor Location</th>
+										<th>Enable/Disable</th>
 										<th>Function</th>
 									</tr>
 									</thead>
@@ -191,9 +195,9 @@
 								<table class="table table-hover" id="sea_water_ph_reported_on_total_scale_list">
 									<thead>
 									<tr>
-										<th>VirtualSensorId</th>
-										<th>PhysicalSensorId</th>
-										<th>PhysicalSensor Location</th>
+										<th>Virtual SensorId</th>
+										<th>Virtual Sensor Location</th>
+										<th>Enable/Disable</th>
 										<th>Function</th>
 									</tr>
 									</thead>
@@ -211,9 +215,9 @@
 								<table class="table table-hover" id="turbidity_list">
 									<thead>
 									<tr>
-										<th>PhysicalSensorId</th>
-										<th>PhysicalSensor Location</th>
-										<th>Disabled/Enabled</th>
+										<th>Virtual SensorId</th>
+										<th>Virtual Sensor Location</th>
+										<th>Enable/Disable</th>
 										<th>Function</th>
 									</tr>
 									</thead>
@@ -295,13 +299,25 @@
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 <script>
 	$(document).ready(function(){
-//alert("dd");
-		Refresh_turbidity_lst();
-		Refresh_sea_water_ph_reported_on_total_scale_lst();
-		Refresh_mass_concentration_of_oxygen_in_sea_water_lst();
-		Refresh_sea_water_practical_salinity_lst();
-		Refresh_sea_water_temperature_lst();
 		Refresh_sea_water_pressure_lst();
+	});
+	$('#sea_water').click(function () {
+		Refresh_sea_water_pressure_lst();
+	});
+	$('#sea_water_temp').click(function () {
+		Refresh_sea_water_temperature_lst();
+	});
+	$('#sea_water_practical').click(function () {
+		Refresh_sea_water_practical_salinity_lst();
+	});
+	$('#mass_concentration').click(function () {
+		Refresh_mass_concentration_of_oxygen_in_sea_water_lst();
+	});
+	$('#sea_water_ph').click(function () {
+		Refresh_sea_water_ph_reported_on_total_scale_lst();
+	});
+	$('#turb').click(function () {
+		Refresh_turbidity_lst();
 	});
 </script>
 </body>

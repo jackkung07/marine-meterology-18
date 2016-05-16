@@ -737,7 +737,8 @@
       baseClass: "bootstrap-switch",
       wrapperClass: "wrapper",
       onInit: function() {},
-      onSwitchChange: function() {}
+      onSwitchChange: function() {
+      }
     };
   })(window.jQuery, window);
 
