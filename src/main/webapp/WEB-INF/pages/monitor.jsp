@@ -67,9 +67,9 @@
                 <%--<li><a href="login">Login</a></li>--%>
                 <%--<li><a href="#">Help</a></li>--%>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
+            <%--<form class="navbar-form navbar-right">--%>
+                <%--<input type="text" class="form-control" placeholder="Search...">--%>
+            <%--</form>--%>
         </div>
     </div>
 </nav>
