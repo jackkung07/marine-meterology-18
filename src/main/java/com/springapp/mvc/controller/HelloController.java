@@ -1,15 +1,17 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.sensorControl.*;
-import com.springapp.mvc.sensorEntity.Location;
-import com.springapp.mvc.sensorEntity.PsensorInfo;
-import com.springapp.mvc.sensorEntity.SDataEntity;
-import com.springapp.mvc.sensorEntity.VsensorInfo;
+import com.springapp.mvc.sensorEntity.*;
+import com.springapp.mvc.sensorRepo.UserRepo;
 import com.springapp.mvc.sensorService.DataServices;
 import com.springapp.mvc.sensorService.RtvSensorD;
 import com.springapp.mvc.sensorService.SensorServices;
+import com.springapp.mvc.sensorService.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +37,17 @@ public class HelloController {
     @Autowired
     DataServices dataServices;
 
+    @Autowired
+    UserServices userServices;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainPage(ModelMap model) {
+        createAdminAccount();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+        System.out.println("username: " + username);
+        System.out.println("authority: " + authorities);
         return "main";
     }
 
@@ -72,7 +83,7 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(ModelMap model) {
+    public String login() {
         return "login";
     }
 
@@ -170,6 +181,30 @@ public class HelloController {
             VsensorInfo vitem = new VsensorInfo(VsensorId, sensorType, Status, PsensorList);
             sensorservices.createVsensor(vitem);
             //System.out.println(entry.getValue().get(i));
+        }
+    }
+
+    //---------user log in ----------
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signup(ModelMap model) {
+        return "signup";
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String adduser(@ModelAttribute("user") User user, ModelMap model) {
+        user.setRole("ROLE_USER");
+        userServices.saveUserAccount(user);
+        return "login";
+    }
+
+    private void createAdminAccount(){
+        User user = userServices.findUserAccountByName("admin");
+        if(user == null) {
+            user = new User();
+            user.setName("admin");
+            user.setPassword("admin");
+            user.setRole("ROLE_ADMIN");
+            userServices.saveUserAccount(user);
         }
     }
 }

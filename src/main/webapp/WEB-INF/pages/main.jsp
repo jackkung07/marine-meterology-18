@@ -58,8 +58,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Home</a></li>
 				<%--<li><a href="sensorMaintenance">Sensor Settings</a></li>--%>
-				<li><a href="login">Login</a></li>
-				<li><a href="#">Help</a></li>
+				<li><a href="/login">Login</a></li>
+				<li><a href="/signup">Signup</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">

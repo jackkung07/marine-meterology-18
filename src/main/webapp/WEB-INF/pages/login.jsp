@@ -83,13 +83,58 @@
 <body>
 <div class="login">
     <h1>Login</h1>
-    <form method="get" action="/">
-        <input type="text" name="u" placeholder="Username" required="required" />
-        <input type="password" name="p" placeholder="Password" required="required" />
-        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    <%--<form method="get" action="/">--%>
+        <%--<input type="text" name="name" placeholder="Username" required="required" />--%>
+        <%--<input type="password" name="password" placeholder="Password" required="required" />--%>
+        <%--<button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>--%>
+    <%--</form>--%>
+
+    <form id="signinData" method="post" role="form" class ="col-lg-4 col-lg-offset-1" style="border:1px solid #dcdcdc;">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="name" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" name="password" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button id="signIn" type="submit" class="btn btn-primary btn-block btn-large">Login</button>
+        </div>
     </form>
+
 </div>
 
 <script src="js/index.js"></script>
+<script>
+
+
+    $("form#signinData").submit(function () {
+
+//        console.log($(this).attr("pwd"));
+//        console.log($("#pwdCon").id);
+
+        var formData = new FormData($(this)[0]);
+//        console.log(formData.get("name"));
+//        console.log(formData.get("password"));
+        console.log("submitted");
+
+
+        $.ajax({
+            url: "/signin",
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+                window.location.replace("/");
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        return false;
+    });
+</script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.springapp.mvc.sensorRepo.SensorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,6 @@ public class SensorServicesImp implements SensorServices{
 
     @Autowired
     SensorRepo sensorRepo;
-
 
     @Override
     public List<VsensorInfo> listAllVsensorInfo() {
