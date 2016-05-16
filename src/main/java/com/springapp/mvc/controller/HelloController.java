@@ -46,9 +46,23 @@ public class HelloController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+        String userRole = null;
+        User user = userServices.findUserAccountByName(username);
+        if(user != null ){
+            userRole =user.getRole();
+        }
         System.out.println("username: " + username);
         System.out.println("authority: " + authorities);
+        model.addAttribute("userName", username);
+        model.addAttribute("userRole", authorities);
         return "main";
+    }
+
+    @RequestMapping(value = "/rtvSensorData/{type}/{sdate}/{edate}", method = RequestMethod.GET)
+    public String rtvSensorData(@PathVariable("type") String type,@PathVariable("strdate") String strdate,
+                                @PathVariable("enddate") String enddate) {
+        //model.addAttribute("message", "Hello world!");
+        return "pending";
     }
 
     @RequestMapping(value = "/sensorMgn", method = RequestMethod.GET)
