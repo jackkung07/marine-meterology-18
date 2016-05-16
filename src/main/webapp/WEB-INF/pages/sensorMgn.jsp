@@ -59,10 +59,11 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Home</a></li>
+				${top}
+				<%--<li><a href="#">Home</a></li>--%>
 				<%--<li><a href="sensorMaintenance">Sensor Settings</a></li>--%>
-				<li><a href="login">Login</a></li>
-				<li><a href="#">Help</a></li>
+				<%--<li><a href="login">Login</a></li>--%>
+				<%--<li><a href="#">Help</a></li>--%>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">
@@ -75,10 +76,11 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li><a href="/">Home</a></li>
-				<li><a href="search">Search</a></li>
-				<li><a href="monitor">Monitor</a></li>
-				<li class="active"><a href="sensorMgn">Management<span class="sr-only">(current)</span></a></li>
+				${left}
+				<%--<li><a href="/">Home</a></li>--%>
+				<%--<li><a href="/search">Search</a></li>--%>
+				<%--<li><a href="/monitor">Monitor</a></li>--%>
+				<%--<li class="active"><a href="/sensorMgn">Management<span class="sr-only">(current)</span></a></li>--%>
 				<%--<li><a href="#">Export</a></li>--%>
 			</ul>
 		</div>

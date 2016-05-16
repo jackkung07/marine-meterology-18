@@ -44,6 +44,8 @@
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
+
+
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -52,44 +54,31 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Sensor Cloud</a>
+			<a class="navbar-brand" href="/">Sensor Cloud</a>
 		</div>
+
+
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Home</a></li>
-				<%--<li><a href="sensorMaintenance">Sensor Settings</a></li>--%>
-				<li><a href="/login">Login</a></li>
-				<li><a href="/signup">Signup</a></li>
+				${top}
+				<%--<li><a href="/signup">Signup</a></li>--%>
+				<%--<li><a href="/login">Login</a></li>--%>
 			</ul>
-			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
 		</div>
 	</div>
+
 </nav>
 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-				<li><a href="search">Search</a></li>
-				<li><a href="monitor">Monitor</a></li>
-				<li><a href="sensorMgn">Management</a></li>
-				<%--<li><a href="#">Export</a></li>--%>
+				${left}
+				<%--<li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>--%>
+				<%--<li><a href="/search">Search</a></li>--%>
+				<%--<li><a href="/monitor">Monitor</a></li>--%>
+				<%--<li><a href="/sensorMgn">Management</a></li>--%>
 			</ul>
-			<!-- <ul class="nav nav-sidebar">
-              <li><a href="">Nav item</a></li>
-              <li><a href="">Nav item again</a></li>
-              <li><a href="">One more nav</a></li>
-              <li><a href="">Another nav item</a></li>
-              <li><a href="">More navigation</a></li>
-            </ul> -->
-			<!-- <ul class="nav nav-sidebar">
-              <li><a href="">Nav item again</a></li>
-              <li><a href="">One more nav</a></li>
-              <li><a href="">Another nav item</a></li>
-            </ul> -->
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">Dashboard</h1>

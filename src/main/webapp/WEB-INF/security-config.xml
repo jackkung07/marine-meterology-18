@@ -23,9 +23,9 @@
         <intercept-url pattern="/login" access="permitAll"/>
         <intercept-url pattern="/logout" access="permitAll"/>
         <intercept-url pattern="/signup" access="permitAll"/>
-        <intercept-url pattern="/listCampaigns" access="hasAnyRole('ROLE_ADMIN','ROLE_CAMPAIGN')"/>
+        <intercept-url pattern="/search" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/monitor" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/menu" access="hasAnyRole('ROLE_ADMIN','ROLE_CAMPAIGN')"/>
+        <intercept-url pattern="/sensorMgn" access="hasRole('ROLE_ADMIN')"/>
         <logout
                 logout-success-url="/"
                 logout-url="/logout"

@@ -46,7 +46,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         }
 
         if (roles.contains("ROLE_ADMIN")) {
-            url = "/monitor";
+            url = "/";
         } else {
             url = "/";
         }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.SynchronousQueue;
 
 
 @Controller
@@ -43,41 +44,49 @@ public class HelloController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainPage(ModelMap model) {
         createAdminAccount();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
-        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
-        System.out.println("username: " + username);
-        System.out.println("authority: " + authorities);
-        if(authorities.contains("ROLE_ANONYMOUS")){
-            model.addAttribute("","");
+        List<String> userInfo = getLoginInfo();
+
+        System.out.println(userInfo);
+//        List<String> top = new ArrayList<String>();
+//        top.add(new String("<li><a href=\"/signup\">Signup</a></li>"));
+//        top.add(new String("<li><a href=\"/login\">Login</a></li>"));
+//
+//        model.addAttribute("top", top);
+
+        if(userInfo.get(1).contains("ANONYMOUS")) {
+            anonymousRole(model);
+        }else if(userInfo.get(1).contains("ADMIN")){
+            adminRole(model, 1);
+        }else{
+            userRole(model, 1);
         }
         return "main";
     }
-    
+
     @RequestMapping(value = "/rtvSensorData/{type}/{sdate}/{edate}", method = RequestMethod.GET)
     @ResponseBody
-    public List<SDataEntity> rtvSensorData(@PathVariable("type") String type,@PathVariable("strdate") String strdate,
-                                @PathVariable("enddate") String enddate) {
+    public List<SDataEntity> rtvSensorData(@PathVariable("type") String type, @PathVariable("strdate") String strdate,
+                                           @PathVariable("enddate") String enddate) {
         Random randomGenerator = new Random();
         List<Sensor> sensorList;
-        if(SensorType.valueOf(type) == SensorType.sea_water_pressure){
+        if (SensorType.valueOf(type) == SensorType.sea_water_pressure) {
             sensorList = sensorMonitor.getSensors(SensorType.sea_water_pressure);
-        }else if(SensorType.valueOf(type) == SensorType.sea_water_temperature){
+        } else if (SensorType.valueOf(type) == SensorType.sea_water_temperature) {
             sensorList = sensorMonitor.getSensors(SensorType.sea_water_temperature);
-        }else if(SensorType.valueOf(type) == SensorType.sea_water_practical_salinity){
+        } else if (SensorType.valueOf(type) == SensorType.sea_water_practical_salinity) {
             sensorList = sensorMonitor.getSensors(SensorType.sea_water_practical_salinity);
-        }else if(SensorType.valueOf(type) == SensorType.mass_concentration_of_oxygen_in_sea_water){
+        } else if (SensorType.valueOf(type) == SensorType.mass_concentration_of_oxygen_in_sea_water) {
             sensorList = sensorMonitor.getSensors(SensorType.mass_concentration_of_oxygen_in_sea_water);
-        }else if(SensorType.valueOf(type) == SensorType.sea_water_ph_reported_on_total_scale){
+        } else if (SensorType.valueOf(type) == SensorType.sea_water_ph_reported_on_total_scale) {
             sensorList = sensorMonitor.getSensors(SensorType.sea_water_ph_reported_on_total_scale);
-        }else{
+        } else {
             sensorList = sensorMonitor.getSensors(SensorType.turbidity);
         }
         int randomInt = randomGenerator.nextInt(sensorList.size());
         Sensor sensorRand = sensorList.get(randomInt);
-        if(sensorRand.getSensorStatus().equals(SensorStatus.Enabled) && sensorRand.getSensorStatus().equals(SensorStatus.UP)){
+        if (sensorRand.getSensorStatus().equals(SensorStatus.Enabled) && sensorRand.getSensorStatus().equals(SensorStatus.UP)) {
             return dataServices.findDataList(sensorRand.getSensorType(), sensorRand.getSensorLocation(), strdate, enddate);
-        }else {
+        } else {
             sensorList.remove(randomInt);
             for (Sensor sensor : sensorList) {
                 if (sensor.getSensorStatus().equals(SensorStatus.Enabled) && sensor.getSensorStatus().equals(SensorStatus.UP)) {
@@ -88,16 +97,16 @@ public class HelloController {
         return null;
     }
 
-    @RequestMapping(value = "/sensorMgn", method = RequestMethod.GET)
-    public String sensorMan(ModelMap model) {
-        //model.addAttribute("message", "Hello world!");
-        return "sensorMgn";
-    }
-
     @RequestMapping(value = "/monitor", method = RequestMethod.GET)
     public String monitorhome(ModelMap model) {
-        //model.addAttribute("message", "Hello world!");
+        adminRole(model, 2);
         return "monitor";
+    }
+
+    @RequestMapping(value = "/sensorMgn", method = RequestMethod.GET)
+    public String sensorMan(ModelMap model) {
+        adminRole(model, 3);
+        return "sensorMgn";
     }
 
     @RequestMapping(value = "/monitor/{type}", method = RequestMethod.GET)
@@ -106,10 +115,10 @@ public class HelloController {
         List<Sensor> sensorList = sensorMonitor.getSensors(SensorType.valueOf(type));
         VsensorInfo vsensorInfo = sensorservices.findVsensorByType(type);
         vsensorInfo.setStatus("");
-        for(int i = 0; i < vsensorInfo.getPsensorList().size(); i++){
+        for (int i = 0; i < vsensorInfo.getPsensorList().size(); i++) {
             PsensorInfo psensorInfo = vsensorInfo.getPsensorList().get(i);
-            for(Sensor sensor: sensorList) {
-                if(sensor.getSensorLocation().equals(SensorLocation.valueOf(psensorInfo.getLocation().getLocation()))) {
+            for (Sensor sensor : sensorList) {
+                if (sensor.getSensorLocation().equals(SensorLocation.valueOf(psensorInfo.getLocation().getLocation()))) {
                     psensorInfo.setStatus(sensor.getSensorStatus().toString());
                     break;
                 }
@@ -126,6 +135,7 @@ public class HelloController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(ModelMap model) {
+        userRole(model, 2);
         return "search";
     }
 
@@ -156,7 +166,7 @@ public class HelloController {
     @RequestMapping(value = "/appRqstHandler/{type}/{location}/{strdate}/{enddate}", method = RequestMethod.GET)
     @ResponseBody
     public List<SDataEntity> appRqstHandler(@PathVariable("type") String type, @PathVariable("location") String location,
-                                      @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
+                                            @PathVariable("strdate") String strdate, @PathVariable("enddate") String enddate) {
         return dataServices.findDataList(SensorType.valueOf(type), SensorLocation.valueOf(location), strdate, enddate);
     }
 
@@ -170,15 +180,12 @@ public class HelloController {
     @RequestMapping(value = "/chgSensorStatus/{VsensorId}/{PsensorId}/{status}", method = RequestMethod.POST)
     @ResponseBody
     public void chgSensorStatus(@PathVariable("VsensorId") String VsensorId,
-                                    @PathVariable("PsensorId") String PsensorId, @PathVariable("status") String status) {
+                                @PathVariable("PsensorId") String PsensorId, @PathVariable("status") String status) {
 
-        if(PsensorId.equals("_"))
-        {
-            sensorservices.chgVsensorStatus(VsensorId,status);
-        }
-        else
-        {
-            sensorservices.chgPsensorStatus(VsensorId,PsensorId,status);
+        if (PsensorId.equals("_")) {
+            sensorservices.chgVsensorStatus(VsensorId, status);
+        } else {
+            sensorservices.chgPsensorStatus(VsensorId, PsensorId, status);
         }
 
         return;
@@ -234,14 +241,93 @@ public class HelloController {
         return "login";
     }
 
-    private void createAdminAccount(){
+    private void createAdminAccount() {
         User user = userServices.findUserAccountByName("admin");
-        if(user == null) {
+        if (user == null) {
             user = new User();
             user.setName("admin");
             user.setPassword("admin");
             user.setRole("ROLE_ADMIN");
             userServices.saveUserAccount(user);
         }
+    }
+
+    private void anonymousRole(ModelMap model) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<li><a href=\"/signup\">Signup</a></li>");
+        stringBuilder.append("<li><a href=\"/login\">Login</a></li>");
+        String top = stringBuilder.toString();
+        stringBuilder.setLength(0);
+        stringBuilder.append("<li class=\"active\"><a href=\"/\">Home<span class=\"sr-only\">(current)</span></a></li>");
+        String left = stringBuilder.toString();
+        model.addAttribute("top", top);
+        model.addAttribute("left", left);
+    }
+
+    private void adminRole(ModelMap model, int i) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<li><a href=\"/logout\">Logout</a></li>");
+        String top = stringBuilder.toString();
+        stringBuilder.setLength(0);
+        switch (i) {
+            case 2:
+                stringBuilder.append("<li><a href=\"/\">Home</a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"/monitor\">Monitor<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li><a href=\"/sensorMgn\">Management</a></li>");
+                break;
+            case 3:
+                stringBuilder.append("<li><a href=\"/\">Home</a></li>");
+                stringBuilder.append("<li><a href=\"/monitor\">Monitor</a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"/sensorMgn\">Management<span class=\"sr-only\">(current)</span></a></li>");
+                break;
+            default:
+                stringBuilder.append("<li class=\"active\"><a href=\"/\">Home<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li><a href=\"/monitor\">Monitor</a></li>");
+                stringBuilder.append("<li><a href=\"/sensorMgn\">Management</a></li>");
+        }
+        String left = stringBuilder.toString();
+        model.addAttribute("top", top);
+        model.addAttribute("left", left);
+    }
+
+    private void userRole(ModelMap model, int i) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<li><a href=\"/logout\">Logout</a></li>");
+        String top = stringBuilder.toString();
+        stringBuilder.setLength(0);
+        switch (i) {
+            case 2:
+                stringBuilder.append("<li><a href=\"/\">Home</a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"search\">Search<span class=\"sr-only\">(current)</span></a></li>");
+                break;
+            default:
+                stringBuilder.append("<li class=\"active\"><a href=\"/\">Home<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li><a href=\"/search\">Search</a></li>");
+        }
+        String left = stringBuilder.toString();
+        model.addAttribute("top", top);
+        model.addAttribute("left", left);
+    }
+
+    private List<String> getLoginInfo() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+        List<String> roleList = new ArrayList<String>();
+        for (GrantedAuthority a : authorities) {
+            roleList.add(a.getAuthority().trim().toString());
+        }
+        String role;
+        if (roleList.get(0).contains("ANONYMOUS")) {
+            role = "ROLE_ANONYMOUS";
+        } else if (roleList.get(0).contains("ADMIN")) {
+            role = "ROLE_ADMIN";
+        } else {
+            role = "ROLE_USER";
+        }
+        List<String> res = new ArrayList<String>();
+        res.add(username);
+        res.add(role);
+        return res;
     }
 }
