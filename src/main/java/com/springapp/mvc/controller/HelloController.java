@@ -53,13 +53,39 @@ public class HelloController {
         }
         return "main";
     }
-
-    // TODO ------ finish this
+    
     @RequestMapping(value = "/rtvSensorData/{type}/{sdate}/{edate}", method = RequestMethod.GET)
-    public String rtvSensorData(@PathVariable("type") String type,@PathVariable("strdate") String strdate,
+    @ResponseBody
+    public List<SDataEntity> rtvSensorData(@PathVariable("type") String type,@PathVariable("strdate") String strdate,
                                 @PathVariable("enddate") String enddate) {
-        //model.addAttribute("message", "Hello world!");
-        return "pending";
+        Random randomGenerator = new Random();
+        List<Sensor> sensorList;
+        if(SensorType.valueOf(type) == SensorType.sea_water_pressure){
+            sensorList = sensorMonitor.getSensors(SensorType.sea_water_pressure);
+        }else if(SensorType.valueOf(type) == SensorType.sea_water_temperature){
+            sensorList = sensorMonitor.getSensors(SensorType.sea_water_temperature);
+        }else if(SensorType.valueOf(type) == SensorType.sea_water_practical_salinity){
+            sensorList = sensorMonitor.getSensors(SensorType.sea_water_practical_salinity);
+        }else if(SensorType.valueOf(type) == SensorType.mass_concentration_of_oxygen_in_sea_water){
+            sensorList = sensorMonitor.getSensors(SensorType.mass_concentration_of_oxygen_in_sea_water);
+        }else if(SensorType.valueOf(type) == SensorType.sea_water_ph_reported_on_total_scale){
+            sensorList = sensorMonitor.getSensors(SensorType.sea_water_ph_reported_on_total_scale);
+        }else{
+            sensorList = sensorMonitor.getSensors(SensorType.turbidity);
+        }
+        int randomInt = randomGenerator.nextInt(sensorList.size());
+        Sensor sensorRand = sensorList.get(randomInt);
+        if(sensorRand.getSensorStatus().equals(SensorStatus.Enabled) && sensorRand.getSensorStatus().equals(SensorStatus.UP)){
+            return dataServices.findDataList(sensorRand.getSensorType(), sensorRand.getSensorLocation(), strdate, enddate);
+        }else {
+            sensorList.remove(randomInt);
+            for (Sensor sensor : sensorList) {
+                if (sensor.getSensorStatus().equals(SensorStatus.Enabled) && sensor.getSensorStatus().equals(SensorStatus.UP)) {
+                    return dataServices.findDataList(sensor.getSensorType(), sensor.getSensorLocation(), strdate, enddate);
+                }
+            }
+        }
+        return null;
     }
 
     @RequestMapping(value = "/sensorMgn", method = RequestMethod.GET)
