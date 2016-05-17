@@ -254,7 +254,7 @@ public class HelloController {
         stringBuilder.append("<li><a href=\"login\">Login</a></li>");
         String top = stringBuilder.toString();
         stringBuilder.setLength(0);
-        stringBuilder.append("<li class=\"active\"><a href=\"\">Home<span class=\"sr-only\">(current)</span></a></li>");
+        stringBuilder.append("<li class=\"active\"><a href=\"/test\">Home<span class=\"sr-only\">(current)</span></a></li>");
         String left = stringBuilder.toString();
         model.addAttribute("top", top);
         model.addAttribute("left", left);
@@ -267,17 +267,17 @@ public class HelloController {
         stringBuilder.setLength(0);
         switch (i) {
             case 2:
-                stringBuilder.append("<li><a href=\"\">Home</a></li>");
+                stringBuilder.append("<li><a href=\"/test\">Home</a></li>");
                 stringBuilder.append("<li class=\"active\"><a href=\"monitor\">Monitor<span class=\"sr-only\">(current)</span></a></li>");
                 stringBuilder.append("<li><a href=\"sensorMgn\">Management</a></li>");
                 break;
             case 3:
-                stringBuilder.append("<li><a href=\"\">Home</a></li>");
+                stringBuilder.append("<li><a href=\"/test\">Home</a></li>");
                 stringBuilder.append("<li><a href=\"monitor\">Monitor</a></li>");
                 stringBuilder.append("<li class=\"active\"><a href=\"sensorMgn\">Management<span class=\"sr-only\">(current)</span></a></li>");
                 break;
             default:
-                stringBuilder.append("<li class=\"active\"><a href=\"\">Home<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"/test\">Home<span class=\"sr-only\">(current)</span></a></li>");
                 stringBuilder.append("<li><a href=\"monitor\">Monitor</a></li>");
                 stringBuilder.append("<li><a href=\"sensorMgn\">Management</a></li>");
         }
@@ -293,11 +293,11 @@ public class HelloController {
         stringBuilder.setLength(0);
         switch (i) {
             case 2:
-                stringBuilder.append("<li><a href=\"\">Home</a></li>");
+                stringBuilder.append("<li><a href=\"/test\">Home</a></li>");
                 stringBuilder.append("<li class=\"active\"><a href=\"search\">Search<span class=\"sr-only\">(current)</span></a></li>");
                 break;
             default:
-                stringBuilder.append("<li class=\"active\"><a href=\"\">Home<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"/test\">Home<span class=\"sr-only\">(current)</span></a></li>");
                 stringBuilder.append("<li><a href=\"search\">Search</a></li>");
         }
         String left = stringBuilder.toString();

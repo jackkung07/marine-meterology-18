@@ -103,6 +103,21 @@
                 </div> -->
 			</div>
 
+
+			<h2 class="sub-header">Server Ip Address</h2>
+			<div class="table-responsive">
+				<thead>
+				<tr>
+					<th>
+						<%
+							request.setCharacterEncoding("UTF-8");
+							out.println("From port: " + request.getLocalPort()+"<br>");
+						%>
+					</th>
+				</tr>
+				</thead>
+			</div>
+
 			<%--<h2 class="sub-header">Sensor List</h2>--%>
 			<%--<div class="table-responsive">--%>
 				<%--<table class="table table-striped">--%>
