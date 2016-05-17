@@ -39,6 +39,12 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <!--High Chart -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+
     <![endif]-->
     <style>
         #map {
@@ -129,19 +135,90 @@
                     </form>
                 </div>
             </div>
+            <div id="container-hc" style="min-width: 310px; height: 400px;margin: 0 auto"></div>
         </div>
     </div>
 </div>
 
+<script>
+    $(document).ready(function(){
+        analysis();
+    });
+</script>
+<%--<script type="text/javascript">--%>
+    <%--$(document).ready(function () {--%>
+        <%--$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {--%>
+
+            <%--$('#container-hc').highcharts({--%>
+                <%--chart: {--%>
+                    <%--zoomType: 'x'--%>
+                <%--},--%>
+                <%--title: {--%>
+                    <%--text: 'Sensor data over time'--%>
+                <%--},--%>
+                <%--subtitle: {--%>
+                    <%--text: document.ontouchstart === undefined ?--%>
+                            <%--'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'--%>
+                <%--},--%>
+                <%--xAxis: {--%>
+                    <%--type: 'date time'--%>
+                <%--},--%>
+                <%--yAxis: {--%>
+                    <%--title: {--%>
+                        <%--text: 'data value'--%>
+                    <%--}--%>
+                <%--},--%>
+                <%--legend: {--%>
+                    <%--enabled: false--%>
+                <%--},--%>
+                <%--plotOptions: {--%>
+                    <%--area: {--%>
+                        <%--fillColor: {--%>
+                            <%--linearGradient: {--%>
+                                <%--x1: 0,--%>
+                                <%--y1: 0,--%>
+                                <%--x2: 0,--%>
+                                <%--y2: 1--%>
+                            <%--},--%>
+                            <%--stops: [--%>
+                                <%--[0, Highcharts.getOptions().colors[0]],--%>
+                                <%--[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]--%>
+                            <%--]--%>
+                        <%--},--%>
+                        <%--marker: {--%>
+                            <%--radius: 2--%>
+                        <%--},--%>
+                        <%--lineWidth: 1,--%>
+                        <%--states: {--%>
+                            <%--hover: {--%>
+                                <%--lineWidth: 1--%>
+                            <%--}--%>
+                        <%--},--%>
+                        <%--threshold: null--%>
+                    <%--}--%>
+                <%--},--%>
+
+                <%--series: [{--%>
+                    <%--type: 'area',--%>
+                    <%--name: 'USD to EUR',--%>
+                    <%--data: data--%>
+                <%--}]--%>
+            <%--});--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script type="text/javascript" src="/resources/js/jquery.min.js"><\/script>')</script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <!-- <script src="../../assets/js/vendor/holder.min.js"></script> -->
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/analysis.js"></script>
+<script src="resources/js/bootstrap-switch.js"></script>
 </body>
 </html>
