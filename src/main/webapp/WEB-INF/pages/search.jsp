@@ -98,12 +98,12 @@
             <h1 class="page-header">Sensor Data Request</h1>
             <div class="row placeholders">
                 <div id="sensorDataRequest">
-                    <form method="get" action="sensormgn">
+                    <%--<form method="get" action="sensormgn">--%>
                         <table class="table table-striped">
                             <tr>
                                 <td align="right">Sensor Type</td>
                                 <td align="left">
-                                    <select>
+                                    <select id="selectedtype">
                                         <option value="sea_water_pressure">Water Pressure</option>
                                         <option value="sea_water_temperature">Water Temperature</option>
                                         <option value="sea_water_practical_salinity">Water Salinity</option>
@@ -116,23 +116,23 @@
                             <tr>
                                 <td align="right">Start Date</td>
                                 <td align="left">
-                                    <input type="date" name="startDate">
+                                    <input type="date" id = "strdate" name="startDate">
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right">End Date</td>
                                 <td align="left">
-                                    <input type="date" name="endDate">
+                                    <input type="date" id = "enddate" name="endDate">
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td align="left">
-                                    <input type="submit" value="Submit">
+                                    <input type="submit" onclick="analysis()" value="Submit">
                                 </td>
                             </tr>
                         </table>
-                    </form>
+                    <%--</form>--%>
                 </div>
             </div>
             <div id="container-hc" style="min-width: 310px; height: 400px;margin: 0 auto"></div>
@@ -142,7 +142,7 @@
 
 <script>
     $(document).ready(function(){
-        analysis();
+ //       analysis();
     });
 </script>
 <%--<script type="text/javascript">--%>

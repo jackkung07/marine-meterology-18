@@ -6,15 +6,49 @@
 function analysis() {
     //var category = "sea_water_practical_salinity";
 
-    //$.getJSON("http://localhost:8080/rtvSensorData/sea_water_practical_salinity/2016-05-01/2016-05-15", function (data) {
-    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+    //
+    //$.ajax({
+    //    url: "rtvSensorData/sea_water_practical_salinity/2016-05-15/2016-05-15",
+    //    type: "GET",
+    //    DataType: "json",
+    //    error: function (xhr) {
+    //        alert("An error occured: " + xhr.status + " " + xhr.statusText);
+    //    },
+    //    success: function (result) {
+    //
+    //    alert(result.length);
+    //        alert(data);
+    //    }
+    //});
+
+    var type = $('#selectedtype option:selected').val();
+    var strdt = $('#strdate').val();
+    var enddt = $('#enddate').val();
+
+    var url = "http://localhost:8080/rtvSensorData/"+type+"/"+strdt+"/"+enddt;
+    alert(url);
+
+    $.getJSON(url, function (data) {
+  //  $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+       // alert(data);
         var arr = [];
-        $.each(data, function(key, val) {
-            var y = val.dataDateTime;
-            var name = key;
-            var customTooltip = val.dataValue;
-            arr.push({dataDateTime: y, dataValue: customTooltip})
-        })
+        //$.each(data, function(key, val) {
+        //    var y = val.dataDateTime;
+        //    var name = key;
+        //    var customTooltip = val.dataValue;
+        //    arr.push({dataDateTime: y, dataValue: customTooltip})
+        //})
+        for(var i=0; i<data.length; i++){
+            var datevalue = data[i].dataDateTime;
+            var datavalue = data[i].dataValue;
+            var year = datevalue.substring(0,4);
+            var month = datevalue.substring(5,7);
+            var day = datevalue.substring(8,10);
+      //      alert(year+"**"+month+"**"+day);
+     //       alert(year+"**"+month+"**"+day+ "   " + Date.UTC(year,month,day));
+            arr.push([Date.UTC(year,month,day), parseFloat(datavalue)/100]);
+        }
+     //   alert(arr);
 
         $('#container-hc').highcharts({
             chart: {
@@ -68,7 +102,7 @@ function analysis() {
             series: [{
                 type: 'area',
                 name: 'date',
-                data: data
+                data: arr
             //    data: [
             //        [Date.UTC(2013,5,2),0.7695],
             //        [Date.UTC(2013,5,3),0.7648],
