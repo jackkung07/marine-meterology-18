@@ -223,12 +223,12 @@
 
 
         $.ajax({
-            url: "/signup",
+            url: "signup",
             type: 'POST',
             data: formData,
             async: false,
             success: function (data) {
-                window.location.replace("/signin");
+                window.location.replace("login");
             },
             cache: false,
             contentType: false,

@@ -231,10 +231,11 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @ResponseBody
     public String adduser(@ModelAttribute("user") User user, ModelMap model) {
         user.setRole("ROLE_USER");
         userServices.saveUserAccount(user);
-        return "login";
+        return "please contact 1-800-999-9999 to activate your account";
     }
 
     private void createAdminAccount() {
