@@ -6,14 +6,15 @@
 function analysis() {
     //var category = "sea_water_practical_salinity";
 
-    $.getJSON("http://localhost:8080/rtvSensorData/sea_water_practical_salinity/2016-05-01/2016-05-15", function (data) {
-        //var arr = [];
-        //$.each(data, function(key, val) {
-        //    var y = val.dataDateTime;
-        //    var name = key;
-        //    var customTooltip = val.dataValue;
-        //    arr.push({dataDateTime: y, dataValue: customTooltip})
-        //})
+    //$.getJSON("http://localhost:8080/rtvSensorData/sea_water_practical_salinity/2016-05-01/2016-05-15", function (data) {
+    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+        var arr = [];
+        $.each(data, function(key, val) {
+            var y = val.dataDateTime;
+            var name = key;
+            var customTooltip = val.dataValue;
+            arr.push({dataDateTime: y, dataValue: customTooltip})
+        })
 
         $('#container-hc').highcharts({
             chart: {
@@ -27,7 +28,7 @@ function analysis() {
                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
             },
             xAxis: {
-                type: 'date time'
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -67,18 +68,18 @@ function analysis() {
             series: [{
                 type: 'area',
                 name: 'date',
-                //data: arr
-                data: [
-                    [Date.UTC(2013,5,2),0.7695],
-                    [Date.UTC(2013,5,3),0.7648],
-                    [Date.UTC(2013,5,4),0.7645],
-                    [Date.UTC(2013,5,5),0.7638],
-                    [Date.UTC(2013,5,6),0.7549],
-                    [Date.UTC(2013,5,7),0.7562],
-                    [Date.UTC(2013,5,9),0.7574],
-                    [Date.UTC(2013,5,10),0.7543],
-                    [Date.UTC(2013,5,11),0.7510],
-                    [Date.UTC(2013,5,12),0.7498]]
+                data: data
+            //    data: [
+            //        [Date.UTC(2013,5,2),0.7695],
+            //        [Date.UTC(2013,5,3),0.7648],
+            //        [Date.UTC(2013,5,4),0.7645],
+            //        [Date.UTC(2013,5,5),0.7638],
+            //        [Date.UTC(2013,5,6),0.7549],
+            //        [Date.UTC(2013,5,7),0.7562],
+            //        [Date.UTC(2013,5,9),0.7574],
+            //        [Date.UTC(2013,5,10),0.7543],
+            //        [Date.UTC(2013,5,11),0.7510],
+            //        [Date.UTC(2013,5,12),0.7498]]
             }]
         });
     });
