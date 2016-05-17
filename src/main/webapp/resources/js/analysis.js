@@ -25,7 +25,7 @@ function analysis() {
     var strdt = $('#strdate').val();
     var enddt = $('#enddate').val();
 
-    var url = "http://localhost:8080/rtvSensorData/"+type+"/"+strdt+"/"+enddt;
+    var url = "rtvSensorData/"+type+"/"+strdt+"/"+enddt;
     //alert(url);
 
     $.getJSON(url, function (data) {
