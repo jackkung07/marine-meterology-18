@@ -26,7 +26,7 @@ function analysis() {
     var enddt = $('#enddate').val();
 
     var url = "http://localhost:8080/rtvSensorData/"+type+"/"+strdt+"/"+enddt;
-    alert(url);
+    //alert(url);
 
     $.getJSON(url, function (data) {
   //  $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
