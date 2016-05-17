@@ -151,10 +151,10 @@ public class DataServicesImp implements DataServices {
 
     private boolean isSensorOn(SensorType sensorType, SensorLocation sensorLocation) {
         VsensorInfo vsensorInfo = sensorServices.findVsensorByType(sensorType.toString());
-        if (vsensorInfo.getStatus().equals(SensorStatus.Enabled)) {
+        if (vsensorInfo.getStatus().equals(SensorStatus.Enabled.name())) {
             for (PsensorInfo psensorInfo : vsensorInfo.getPsensorList()) {
-                if (psensorInfo.getLocation().equals(sensorLocation)) {
-                    if (psensorInfo.getStatus().equals(SensorStatus.Enabled)) {
+                if (psensorInfo.getLocation().getLocation().equals(sensorLocation.name())) {
+                    if (psensorInfo.getStatus().equals(SensorStatus.Enabled.name())) {
                         return true;
                     }
                     break;

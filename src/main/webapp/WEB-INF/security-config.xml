@@ -16,13 +16,15 @@
 
     <!-- secure the application´s urls with the specific Role -->
     <http security="none" pattern="/resources/**"/>
-    <http auto-config="true" use-expressions="true">
+    <http security="none" pattern="/rtvSensorData/**"/>
+    <http auto-config="false" use-expressions="true">
         <csrf disabled="true"/>
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/static/**" access="permitAll"/>
         <intercept-url pattern="/login" access="permitAll"/>
         <intercept-url pattern="/logout" access="permitAll"/>
         <intercept-url pattern="/signup" access="permitAll"/>
+        <!--<intercept-url pattern="/rtvSensorData/**" access="hasRole('ROLE_USER')"/>-->
         <intercept-url pattern="/search" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/monitor" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/sensorMgn" access="hasRole('ROLE_ADMIN')"/>

@@ -47,11 +47,6 @@ public class HelloController {
         List<String> userInfo = getLoginInfo();
 
         System.out.println(userInfo);
-//        List<String> top = new ArrayList<String>();
-//        top.add(new String("<li><a href=\"/signup\">Signup</a></li>"));
-//        top.add(new String("<li><a href=\"/login\">Login</a></li>"));
-//
-//        model.addAttribute("top", top);
 
         if(userInfo.get(1).contains("ANONYMOUS")) {
             anonymousRole(model);
@@ -65,8 +60,8 @@ public class HelloController {
 
     @RequestMapping(value = "/rtvSensorData/{type}/{sdate}/{edate}", method = RequestMethod.GET)
     @ResponseBody
-    public List<SDataEntity> rtvSensorData(@PathVariable("type") String type, @PathVariable("strdate") String strdate,
-                                           @PathVariable("enddate") String enddate) {
+    public List<SDataEntity> rtvSensorData(@PathVariable("type") String type, @PathVariable("sdate") String sdate,
+                                           @PathVariable("edate") String edate) {
         Random randomGenerator = new Random();
         List<Sensor> sensorList;
         if (SensorType.valueOf(type) == SensorType.sea_water_pressure) {
@@ -84,13 +79,14 @@ public class HelloController {
         }
         int randomInt = randomGenerator.nextInt(sensorList.size());
         Sensor sensorRand = sensorList.get(randomInt);
-        if (sensorRand.getSensorStatus().equals(SensorStatus.Enabled) && sensorRand.getSensorStatus().equals(SensorStatus.UP)) {
-            return dataServices.findDataList(sensorRand.getSensorType(), sensorRand.getSensorLocation(), strdate, enddate);
+        List<SDataEntity> res = dataServices.findDataList(sensorRand.getSensorType(), sensorRand.getSensorLocation(), sdate, edate);
+        if (res != null) {
+            return res;
         } else {
             sensorList.remove(randomInt);
             for (Sensor sensor : sensorList) {
-                if (sensor.getSensorStatus().equals(SensorStatus.Enabled) && sensor.getSensorStatus().equals(SensorStatus.UP)) {
-                    return dataServices.findDataList(sensor.getSensorType(), sensor.getSensorLocation(), strdate, enddate);
+                if (sensor.getSensorStatus().equals(SensorStatus.UP)) {
+                    return dataServices.findDataList(sensor.getSensorType(), sensor.getSensorLocation(), sdate, edate);
                 }
             }
         }
