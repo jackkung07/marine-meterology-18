@@ -25,9 +25,12 @@
         <intercept-url pattern="/logout" access="permitAll"/>
         <intercept-url pattern="/signup" access="permitAll"/>
         <!--<intercept-url pattern="/rtvSensorData/**" access="hasRole('ROLE_USER')"/>-->
-        <intercept-url pattern="/search" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/monitor" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/sensorMgn" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/search" access="permitAll"/>
+        <intercept-url pattern="/monitor" access="permitAll"/>
+        <intercept-url pattern="/sensorMgn" access="permitAll"/>
+        <!--<intercept-url pattern="/search" access="hasRole('ROLE_USER')"/>-->
+        <!--<intercept-url pattern="/monitor" access="hasRole('ROLE_ADMIN')"/>-->
+        <!--<intercept-url pattern="/sensorMgn" access="hasRole('ROLE_ADMIN')"/>-->
         <logout
                 logout-success-url="/"
                 logout-url="/logout"
