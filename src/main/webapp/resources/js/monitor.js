@@ -41,7 +41,7 @@ function Refresh_sea_water_pressure_lst(refreshMap) {
     var category = "sea_water_pressure";
 
     $.ajax({
-        url: "/monitor/" + category,
+        url: "monitorsensor/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -96,7 +96,7 @@ function Refresh_sea_water_temperature_lst(refreshMap) {
 
     var category = "sea_water_temperature";
     $.ajax({
-        url: "/monitor/" + category,
+        url: "monitorsensor/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -151,7 +151,7 @@ function Refresh_sea_water_practical_salinity_lst(refreshMap) {
 
     var category = "sea_water_practical_salinity";
     $.ajax({
-        url: "/monitor/" + category,
+        url: "monitorsensor/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -206,7 +206,7 @@ function Refresh_mass_concentration_of_oxygen_in_sea_water_lst(refreshMap) {
 
     var category = "mass_concentration_of_oxygen_in_sea_water";
     $.ajax({
-        url: "/monitor/" + category,
+        url: "monitorsensor/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -261,7 +261,7 @@ function Refresh_sea_water_ph_reported_on_total_scale_lst(refreshMap) {
 
     var category = "sea_water_ph_reported_on_total_scale";
     $.ajax({
-        url: "/monitor/" + category,
+        url: "monitorsensor/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -316,7 +316,7 @@ function Refresh_turbidity_lst(refreshMap) {
 
     var category = "turbidity";
     $.ajax({
-        url: "/monitor/" + category,
+        url: "monitorsensor/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {

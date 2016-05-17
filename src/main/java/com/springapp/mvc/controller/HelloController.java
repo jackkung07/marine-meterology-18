@@ -105,7 +105,7 @@ public class HelloController {
         return "sensorMgn";
     }
 
-    @RequestMapping(value = "/monitor/{type}", method = RequestMethod.GET)
+    @RequestMapping(value = "/monitorsensor/{type}", method = RequestMethod.GET)
     @ResponseBody
     public VsensorInfo monitor(@PathVariable("type") String type) {
         List<Sensor> sensorList = sensorMonitor.getSensors(SensorType.valueOf(type));
@@ -250,11 +250,11 @@ public class HelloController {
 
     private void anonymousRole(ModelMap model) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<li><a href=\"/signup\">Signup</a></li>");
-        stringBuilder.append("<li><a href=\"/login\">Login</a></li>");
+        stringBuilder.append("<li><a href=\"signup\">Signup</a></li>");
+        stringBuilder.append("<li><a href=\"login\">Login</a></li>");
         String top = stringBuilder.toString();
         stringBuilder.setLength(0);
-        stringBuilder.append("<li class=\"active\"><a href=\"/\">Home<span class=\"sr-only\">(current)</span></a></li>");
+        stringBuilder.append("<li class=\"active\"><a href=\"\">Home<span class=\"sr-only\">(current)</span></a></li>");
         String left = stringBuilder.toString();
         model.addAttribute("top", top);
         model.addAttribute("left", left);
@@ -262,24 +262,24 @@ public class HelloController {
 
     private void adminRole(ModelMap model, int i) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<li><a href=\"/logout\">Logout</a></li>");
+        stringBuilder.append("<li><a href=\"logout\">Logout</a></li>");
         String top = stringBuilder.toString();
         stringBuilder.setLength(0);
         switch (i) {
             case 2:
-                stringBuilder.append("<li><a href=\"/\">Home</a></li>");
-                stringBuilder.append("<li class=\"active\"><a href=\"/monitor\">Monitor<span class=\"sr-only\">(current)</span></a></li>");
-                stringBuilder.append("<li><a href=\"/sensorMgn\">Management</a></li>");
+                stringBuilder.append("<li><a href=\"\">Home</a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"monitor\">Monitor<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li><a href=\"sensorMgn\">Management</a></li>");
                 break;
             case 3:
-                stringBuilder.append("<li><a href=\"/\">Home</a></li>");
-                stringBuilder.append("<li><a href=\"/monitor\">Monitor</a></li>");
-                stringBuilder.append("<li class=\"active\"><a href=\"/sensorMgn\">Management<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li><a href=\"\">Home</a></li>");
+                stringBuilder.append("<li><a href=\"monitor\">Monitor</a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"sensorMgn\">Management<span class=\"sr-only\">(current)</span></a></li>");
                 break;
             default:
-                stringBuilder.append("<li class=\"active\"><a href=\"/\">Home<span class=\"sr-only\">(current)</span></a></li>");
-                stringBuilder.append("<li><a href=\"/monitor\">Monitor</a></li>");
-                stringBuilder.append("<li><a href=\"/sensorMgn\">Management</a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"\">Home<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li><a href=\"monitor\">Monitor</a></li>");
+                stringBuilder.append("<li><a href=\"sensorMgn\">Management</a></li>");
         }
         String left = stringBuilder.toString();
         model.addAttribute("top", top);
@@ -288,17 +288,17 @@ public class HelloController {
 
     private void userRole(ModelMap model, int i) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<li><a href=\"/logout\">Logout</a></li>");
+        stringBuilder.append("<li><a href=\"logout\">Logout</a></li>");
         String top = stringBuilder.toString();
         stringBuilder.setLength(0);
         switch (i) {
             case 2:
-                stringBuilder.append("<li><a href=\"/\">Home</a></li>");
+                stringBuilder.append("<li><a href=\"\">Home</a></li>");
                 stringBuilder.append("<li class=\"active\"><a href=\"search\">Search<span class=\"sr-only\">(current)</span></a></li>");
                 break;
             default:
-                stringBuilder.append("<li class=\"active\"><a href=\"/\">Home<span class=\"sr-only\">(current)</span></a></li>");
-                stringBuilder.append("<li><a href=\"/search\">Search</a></li>");
+                stringBuilder.append("<li class=\"active\"><a href=\"\">Home<span class=\"sr-only\">(current)</span></a></li>");
+                stringBuilder.append("<li><a href=\"search\">Search</a></li>");
         }
         String left = stringBuilder.toString();
         model.addAttribute("top", top);

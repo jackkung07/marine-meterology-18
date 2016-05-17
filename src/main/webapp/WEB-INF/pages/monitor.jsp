@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
     <!-- add tag spring:url -->
-    <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapMinCss"/>
-    <spring:url value="/resources/css/dashboard.css" var="dashboardCss"/>
+    <spring:url value="resources/css/bootstrap.min.css" var="bootstrapMinCss"/>
+    <spring:url value="resources/css/dashboard.css" var="dashboardCss"/>
 
     <!-- finish adding spring:url tag -->
 
@@ -15,8 +15,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/resources/css/monitor.css">
-    <link href="/resources/css/bootstrap-switch.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="resources/css/monitor.css">
+    <link href="resources/css/bootstrap-switch.css" rel="stylesheet">
 
     <title>Dashboard</title>
 
@@ -57,7 +57,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Sensor Cloud</a>
+            <a class="navbar-brand">Sensor Cloud</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -233,10 +233,10 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt7zPf-f9wKwi4vIXvVCmunQ8AeiSG_sY"
         type="text/javascript" async defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script type="text/javascript" src="/resources/js/jquery.min.js"><\/script>')</script>
-<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/js/monitor.js"></script>
-<script src="/resources/js/bootstrap-switch.js"></script>
+<script>window.jQuery || document.write('<script type="text/javascript" src="resources/js/jquery.min.js"><\/script>')</script>
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/monitor.js"></script>
+<script src="resources/js/bootstrap-switch.js"></script>
 <%--<script type="text/javascript" src="/resources/js/sensor_configure.js"></script>--%>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <!-- <script src="../../assets/js/vendor/holder.min.js"></script> -->

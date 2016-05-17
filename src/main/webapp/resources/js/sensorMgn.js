@@ -48,7 +48,7 @@ function basicinfo(id) {
 function sensorstatuschange(vid, pid, status, sensorType) {
 
     $.ajax({
-        url: "/chgSensorStatus/" + vid + "/" + pid + "/" + status,
+        url: "chgSensorStatus/" + vid + "/" + pid + "/" + status,
         type: "POST",
         DataType: "text",
         error: function (xhr) {
@@ -88,7 +88,7 @@ function Refresh_sea_water_pressure_lst() {
 
     var category = "sea_water_pressure";
     $.ajax({
-        url: "/rtvSensorLst/" + category,
+        url: "rtvSensorLst/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -191,7 +191,7 @@ function Refresh_sea_water_temperature_lst() {
 
     var category = "sea_water_temperature";
     $.ajax({
-        url: "/rtvSensorLst/" + category,
+        url: "rtvSensorLst/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -293,7 +293,7 @@ function Refresh_sea_water_practical_salinity_lst() {
 
     var category = "sea_water_practical_salinity";
     $.ajax({
-        url: "/rtvSensorLst/" + category,
+        url: "rtvSensorLst/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -395,7 +395,7 @@ function Refresh_mass_concentration_of_oxygen_in_sea_water_lst() {
 
     var category = "mass_concentration_of_oxygen_in_sea_water";
     $.ajax({
-        url: "/rtvSensorLst/" + category,
+        url: "rtvSensorLst/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -497,7 +497,7 @@ function Refresh_sea_water_ph_reported_on_total_scale_lst() {
 
     var category = "sea_water_ph_reported_on_total_scale";
     $.ajax({
-        url: "/rtvSensorLst/" + category,
+        url: "rtvSensorLst/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
@@ -599,7 +599,7 @@ function Refresh_turbidity_lst() {
 
     var category = "turbidity";
     $.ajax({
-        url: "/rtvSensorLst/" + category,
+        url: "rtvSensorLst/" + category,
         type: "GET",
         DataType: "json",
         error: function (xhr) {
