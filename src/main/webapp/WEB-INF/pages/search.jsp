@@ -139,68 +139,74 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
 
-            $('#container-hc').highcharts({
-                chart: {
-                    zoomType: 'x'
-                },
-                title: {
-                    text: 'Sensor data over time'
-                },
-                subtitle: {
-                    text: document.ontouchstart === undefined ?
-                            'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                },
-                xAxis: {
-                    type: 'date time'
-                },
-                yAxis: {
-                    title: {
-                        text: 'data value'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    area: {
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]],
-                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                            ]
-                        },
-                        marker: {
-                            radius: 2
-                        },
-                        lineWidth: 1,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        threshold: null
-                    }
-                },
-
-                series: [{
-                    type: 'area',
-                    name: 'USD to EUR',
-                    data: data
-                }]
-            });
-        });
+<script>
+    $(document).ready(function(){
+        analysis();
     });
 </script>
+<%--<script type="text/javascript">--%>
+    <%--$(document).ready(function () {--%>
+        <%--$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {--%>
+
+            <%--$('#container-hc').highcharts({--%>
+                <%--chart: {--%>
+                    <%--zoomType: 'x'--%>
+                <%--},--%>
+                <%--title: {--%>
+                    <%--text: 'Sensor data over time'--%>
+                <%--},--%>
+                <%--subtitle: {--%>
+                    <%--text: document.ontouchstart === undefined ?--%>
+                            <%--'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'--%>
+                <%--},--%>
+                <%--xAxis: {--%>
+                    <%--type: 'date time'--%>
+                <%--},--%>
+                <%--yAxis: {--%>
+                    <%--title: {--%>
+                        <%--text: 'data value'--%>
+                    <%--}--%>
+                <%--},--%>
+                <%--legend: {--%>
+                    <%--enabled: false--%>
+                <%--},--%>
+                <%--plotOptions: {--%>
+                    <%--area: {--%>
+                        <%--fillColor: {--%>
+                            <%--linearGradient: {--%>
+                                <%--x1: 0,--%>
+                                <%--y1: 0,--%>
+                                <%--x2: 0,--%>
+                                <%--y2: 1--%>
+                            <%--},--%>
+                            <%--stops: [--%>
+                                <%--[0, Highcharts.getOptions().colors[0]],--%>
+                                <%--[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]--%>
+                            <%--]--%>
+                        <%--},--%>
+                        <%--marker: {--%>
+                            <%--radius: 2--%>
+                        <%--},--%>
+                        <%--lineWidth: 1,--%>
+                        <%--states: {--%>
+                            <%--hover: {--%>
+                                <%--lineWidth: 1--%>
+                            <%--}--%>
+                        <%--},--%>
+                        <%--threshold: null--%>
+                    <%--}--%>
+                <%--},--%>
+
+                <%--series: [{--%>
+                    <%--type: 'area',--%>
+                    <%--name: 'USD to EUR',--%>
+                    <%--data: data--%>
+                <%--}]--%>
+            <%--});--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -211,5 +217,8 @@
 <!-- <script src="../../assets/js/vendor/holder.min.js"></script> -->
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/analysis.js"></script>
+<script src="resources/js/bootstrap-switch.js"></script>
 </body>
 </html>
